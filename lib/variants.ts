@@ -157,3 +157,23 @@ export const FAQS = [
     a: 'Mass tort litigation moves over months and years rather than weeks. Recovery is never guaranteed, and timelines depend on the facts of each case.',
   },
 ]
+
+export interface Testimonial {
+  quote: string
+  name: string
+  location?: string
+}
+
+/**
+ * Client testimonials — EMPTY ON PURPOSE.
+ *
+ * The Testimonials section does not render while this array is empty, which is
+ * the correct default. Fabricated testimonials and invented recovery figures
+ * violate attorney advertising rules (ABA Model Rule 7.1 and state analogues),
+ * and this page runs under a real firm's name.
+ *
+ * To populate: get real, written, client-approved quotes from the firm. Any
+ * specific dollar figure needs their explicit sign-off. The "results vary"
+ * disclaimer is already rendered beneath the grid.
+ */
+export const TESTIMONIALS: Testimonial[] = []

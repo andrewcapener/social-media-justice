@@ -7,13 +7,17 @@
  * a reachable privacy policy for lead-gen ad accounts. Do not trim these
  * without running the change past the client's counsel.
  */
+import { Logo } from '@/components/ui/Logo'
+
 export function Footer() {
   const year = new Date().getFullYear()
 
   return (
     <footer className="bg-ink py-12 text-white/70">
       <div className="mx-auto max-w-4xl space-y-4 px-5 text-xs leading-relaxed sm:px-8">
-        <p className="text-sm font-bold uppercase tracking-wide text-white">
+        <Logo tone="light" />
+
+        <p className="pt-2 text-sm font-bold uppercase tracking-wide text-white">
           Attorney Advertising
         </p>
 

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { TypeformEmbed } from '@/components/TypeformEmbed'
 import { Footer } from '@/components/Footer'
 import { Logo } from '@/components/ui/Logo'
@@ -64,6 +65,22 @@ function Hero({
               </li>
             ))}
           </ul>
+
+          {/* Sits below the fold-critical copy so it never pushes the form down. */}
+          <figure className="mt-8 hidden lg:block">
+            <Image
+              src={variant.image.src}
+              alt={variant.image.alt}
+              width={940}
+              height={627}
+              priority
+              sizes="(max-width: 1024px) 100vw, 560px"
+              className="aspect-[16/9] w-full rounded-2xl object-cover"
+            />
+            <figcaption className="mt-2 text-[11px] text-text-secondary/70">
+              Photo: {variant.image.credit}. Depiction by a model, not an actual client.
+            </figcaption>
+          </figure>
         </div>
 
         <div className="mt-8 lg:mt-0">

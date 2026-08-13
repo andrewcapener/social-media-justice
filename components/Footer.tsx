@@ -34,6 +34,11 @@ export function Footer() {
         </p>
 
         <p>
+          Photographs on this site depict models, not actual clients, and do not
+          portray any actual client or case.
+        </p>
+
+        <p>
           Any medical information presented here is for educational purposes only
           and does not replace professional medical advice. Consult a qualified
           medical professional for diagnosis or treatment.

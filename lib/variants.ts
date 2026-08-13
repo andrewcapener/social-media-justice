@@ -26,8 +26,16 @@ export interface Variant {
     headlineAccent: string
     subheadline: string
     cta: string
-    /** Pexels search term used to source the hero image. */
-    imageQuery: string
+  }
+  /**
+   * Hero imagery, sourced from Pexels and served locally so we never hotlink.
+   * These are stock models, not clients — see the disclosure in the footer,
+   * which attorney advertising rules require whenever actors depict clients.
+   */
+  image: {
+    src: string
+    alt: string
+    credit: string
   }
   /** Emotional proof points under the hero. */
   assurances: string[]
@@ -50,7 +58,11 @@ export const VARIANTS: Record<VariantId, Variant> = {
       subheadline:
         'Families across the country are holding Meta, TikTok, and Snap accountable. Find out in about two minutes whether your family may qualify.',
       cta: 'See If You Qualify',
-      imageQuery: 'mother comforting teenage daughter',
+    },
+    image: {
+      src: '/img/hero-a.jpg',
+      alt: 'A parent comforting their teenage child at home.',
+      credit: 'Kaboompics on Pexels',
     },
     assurances: SHARED_ASSURANCES,
   },
@@ -64,7 +76,11 @@ export const VARIANTS: Record<VariantId, Variant> = {
       subheadline:
         'Internal company documents show these platforms studied how to keep kids scrolling. If your child developed anxiety, depression, or an eating disorder before turning 18, you may have a claim.',
       cta: 'Start Your Free Review',
-      imageQuery: 'teenager alone with phone at night',
+    },
+    image: {
+      src: '/img/hero-b.jpg',
+      alt: 'A child using a smartphone alone in a dark room, lit only by the screen.',
+      credit: 'Towfiqu barbhuiya on Pexels',
     },
     assurances: SHARED_ASSURANCES,
   },

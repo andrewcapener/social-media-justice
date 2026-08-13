@@ -5,6 +5,7 @@ import { UrgencyBar } from '@/components/UrgencyBar'
 import { TrustBadges } from '@/components/TrustBadges'
 import { Testimonials } from '@/components/Testimonials'
 import { StickyCTA } from '@/components/StickyCTA'
+import { LitigationStatus } from '@/components/LitigationStatus'
 import { Logo } from '@/components/ui/Logo'
 import { HARMS, STEPS, FAQS, type Variant } from '@/lib/variants'
 
@@ -41,7 +42,7 @@ function Hero({ variant, campaign }: { variant: Variant; campaign: string }) {
             {hero.eyebrow}
           </span>
 
-          <h1 className="mt-5 text-[32px] font-bold leading-[1.12] text-ink sm:text-[40px] lg:text-[46px]">
+          <h1 className="mt-5 font-serif text-[34px] font-semibold leading-[1.1] tracking-[-0.015em] text-ink sm:text-[42px] lg:text-[48px]">
             {hero.headline}{' '}
             <span className={storyLed ? 'text-amber-deep' : 'text-indigo-soft'}>
               {hero.headlineAccent}
@@ -105,7 +106,7 @@ function Harms() {
   return (
     <section className="bg-cream py-14">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <h2 className="text-center text-[26px] font-bold text-ink sm:text-[32px]">
+        <h2 className="text-center font-serif text-[28px] font-semibold tracking-[-0.01em] text-ink sm:text-[34px]">
           Harm These Platforms Are Accused of Causing
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-center text-text-secondary">
@@ -158,7 +159,7 @@ function Steps({ cta }: { cta: string }) {
   return (
     <section className="bg-white py-14">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <h2 className="text-center text-[26px] font-bold text-ink sm:text-[32px]">
+        <h2 className="text-center font-serif text-[28px] font-semibold tracking-[-0.01em] text-ink sm:text-[34px]">
           How It Works
         </h2>
 
@@ -201,7 +202,7 @@ function Faq() {
   return (
     <section className="bg-cream py-14">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
-        <h2 className="text-center text-[26px] font-bold text-ink sm:text-[32px]">
+        <h2 className="text-center font-serif text-[28px] font-semibold tracking-[-0.01em] text-ink sm:text-[34px]">
           Common Questions
         </h2>
 
@@ -239,6 +240,7 @@ export function Lander({
       <Hero variant={variant} campaign={campaign} />
       <TrustBadges />
       <Harms />
+      <LitigationStatus />
       <Steps cta={variant.hero.cta} />
       <Testimonials />
       <Faq />

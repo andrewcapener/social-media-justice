@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Source_Serif_4 } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
@@ -7,6 +7,19 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+})
+
+/**
+ * Serif display face. In legal, typography is the single largest lever on
+ * perceived legitimacy — courts, firms, and institutions set in serif, and a
+ * pure-geometric-sans page reads like a startup, not counsel.
+ */
+const sourceSerif = Source_Serif_4({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['600', '700'],
+  // Distinct from the Tailwind `--font-serif` token, which points at this.
+  variable: '--font-serif-src',
 })
 
 const siteUrl =
@@ -46,7 +59,7 @@ export default function RootLayout({
   const trustedFormScript = process.env.TRUSTEDFORM_SCRIPT
 
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${sourceSerif.variable}`}>
       <head>
         {/* Meta pixel — browser half of the pair. The server half fires from
             /api/capi with a matching event_id so Meta dedupes. */}

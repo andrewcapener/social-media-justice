@@ -21,6 +21,7 @@
   --color-border-default: #e6e2dc;
 
   --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-serif-src), Georgia, 'Times New Roman', serif;
 }
 
 * {

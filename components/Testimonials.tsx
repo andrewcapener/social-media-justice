@@ -21,7 +21,7 @@ export function Testimonials() {
         <p className="text-center text-xs font-bold uppercase tracking-[0.18em] text-amber-deep">
           Real families
         </p>
-        <h2 className="mt-2 text-center text-[26px] font-bold text-ink sm:text-[32px]">
+        <h2 className="mt-2 text-center font-serif text-[28px] font-semibold tracking-[-0.01em] text-ink sm:text-[34px]">
           Families We&apos;ve Helped
         </h2>
 

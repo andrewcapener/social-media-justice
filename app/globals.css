@@ -1,7 +1,26 @@
 @import "tailwindcss";
 
-:root {
-  --font-inter: 'Inter', system-ui, sans-serif;
+/*
+ * Tailwind v4 is CSS-first: theme tokens are declared here, NOT in
+ * tailwind.config.ts (which v4 ignores unless pulled in with @config).
+ * Adding a color here is what makes `bg-ink`, `text-amber`, etc. exist.
+ *
+ * Deliberately not the competitor's maroon/red ambulance-chaser palette —
+ * this audience is worried parents, so it reads protective and credible.
+ */
+@theme {
+  --color-ink: #1a2340;          /* headlines, footer, primary brand */
+  --color-indigo: #232f5c;       /* primary surfaces */
+  --color-indigo-soft: #5b7bb8;
+  --color-amber: #e8963c;        /* CTA — high contrast against indigo */
+  --color-amber-deep: #c77a26;
+  --color-success: #0f9d6e;
+  --color-text-primary: #15192b;
+  --color-text-secondary: #5a6376;
+  --color-cream: #faf8f5;        /* warm neutral bg, softer than clinical white */
+  --color-border-default: #e6e2dc;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
 }
 
 * {
@@ -13,29 +32,21 @@ html {
 }
 
 body {
-  color: #1A1A2E;
+  color: var(--color-text-primary);
   background: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F8F9FC;
+  background: var(--color-cream);
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: #cbd5e1;
   border-radius: 3px;
-}
-
-/* Form focus ring */
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
 }
 
 /* Prevent iOS zoom on input focus */

@@ -1,6 +1,6 @@
 # Social Media Justice
 
-Landing pages for **socialmediajusticenow.com** — social media harm mass tort
+Landing pages for **www.socialmediajusticetoday.com** — social media harm mass tort
 lead generation. Two A/B variants feeding the client's existing Typeform intake
 and e-sign retainer flow.
 

@@ -57,10 +57,32 @@ export default function RootLayout({
   const pixelId = process.env.NEXT_PUBLIC_FB_PIXEL_ID
   const gaId = process.env.NEXT_PUBLIC_GA_ID
   const trustedFormScript = process.env.TRUSTEDFORM_SCRIPT
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID
+  // Growth Channel retargeting — every page. The conversion pixel is NOT here;
+  // it fires only on the optimized event, from lib/growth-channel.ts.
+  const gcRetargeting = process.env.NEXT_PUBLIC_GC_RETARGETING_PIXEL
 
   return (
     <html lang="en" className={`${inter.variable} ${sourceSerif.variable}`}>
       <head>
+        {/* Google Tag Manager — loaded first so the media team can manage tags
+            without a deploy. If a pixel is added here AND in GTM it fires
+            twice, so pick one home per tag. */}
+        {gtmId && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${gtmId}');`,
+            }}
+          />
+        )}
+
+        {/* Growth Channel retargeting — all pages */}
+        {gcRetargeting && <script async src={gcRetargeting} />}
+
         {/* Meta pixel — browser half of the pair. The server half fires from
             /api/capi with a matching event_id so Meta dedupes. */}
         {pixelId && (
@@ -90,6 +112,17 @@ fbq('init','${pixelId}');fbq('track','PageView');`,
         {trustedFormScript && <script src={trustedFormScript} async />}
       </head>
       <body className="bg-white font-sans antialiased">
+        {gtmId && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+              title="Google Tag Manager"
+            />
+          </noscript>
+        )}
         {pixelId && (
           <noscript>
             {/* eslint-disable-next-line @next/next/no-img-element */}

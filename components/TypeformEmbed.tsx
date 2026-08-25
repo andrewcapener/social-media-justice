@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { readUtm, trackConversion, trackClient } from '@/lib/tracking'
+import { fireGrowthChannelConversion } from '@/lib/growth-channel'
 
 /**
  * Embeds the client's existing Typeform survey.
@@ -134,7 +135,10 @@ export function TypeformEmbed({
     }
 
     window[SUBMIT_CALLBACK] = () => {
+      // The optimized event. Fires Meta (pixel + CAPI, deduped) and the
+      // Growth Channel conversion pixel together, once per completed form.
       void trackConversion('Lead', { campaign, variant })
+      fireGrowthChannelConversion()
     }
 
     const el = document.createElement('div')

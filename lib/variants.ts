@@ -56,7 +56,7 @@ export const VARIANTS: Record<VariantId, Variant> = {
       headline: 'Was Your Child Harmed by',
       headlineAccent: 'Social Media?',
       subheadline:
-        'Families across the country are holding Meta, TikTok, and Snap accountable. Find out in about two minutes whether your family may qualify.',
+        'Families across the country are holding YouTube, TikTok, Instagram, Snapchat, and Facebook accountable. Find out in about two minutes whether your family may qualify.',
       cta: 'See If You Qualify',
     },
     image: {
@@ -68,14 +68,14 @@ export const VARIANTS: Record<VariantId, Variant> = {
   },
   b: {
     id: 'b',
-    name: 'Accountability / story-led',
+    name: 'Self-submitter / 18-25',
     hero: {
       eyebrow: 'Attorney advertising — free case review',
-      headline: 'They Knew It Was Addictive.',
-      headlineAccent: 'Your Child Paid the Price.',
+      headline: 'You Grew Up on These Apps.',
+      headlineAccent: 'They Knew What It Was Doing to You.',
       subheadline:
-        'Internal company documents show these platforms studied how to keep kids scrolling. If your child developed anxiety, depression, or an eating disorder before turning 18, you may have a claim.',
-      cta: 'Start Your Free Review',
+        'Internal company documents show these platforms studied how to keep teenagers scrolling. If you were under 18 when you started and developed anxiety, depression, an eating disorder, or body dysmorphia, you may have a claim of your own.',
+      cta: 'Check My Eligibility',
     },
     image: {
       src: '/img/hero-b.jpg',
@@ -99,8 +99,8 @@ export function getVariant(value: string): Variant | null {
 /** Harms shown to both variants — mirrors the qualifying injury list. */
 export const HARMS = [
   {
-    title: 'Anxiety & Depression',
-    body: 'Persistent worry, hopelessness, or withdrawal that began or worsened during heavy platform use.',
+    title: 'Depression & Severe Anxiety',
+    body: 'Persistent hopelessness, panic, or withdrawal that began or worsened during heavy platform use.',
   },
   {
     title: 'Eating Disorders',
@@ -108,49 +108,57 @@ export const HARMS = [
   },
   {
     title: 'Self-Harm & Suicidal Ideation',
-    body: 'Self-injury or suicidal thoughts, including exposure to content that encouraged them.',
+    body: 'Suicidal thoughts, an attempt, or other physical self-harm, including exposure to content that encouraged it.',
   },
   {
-    title: 'Sleep Loss & Academic Decline',
-    body: 'Compulsive late-night use, falling grades, and withdrawal from activities your child once loved.',
+    title: 'Body Dysmorphia',
+    body: 'A distorted, distressing preoccupation with appearance, driven by filtered and comparison-heavy feeds.',
   },
 ]
 
 export const STEPS = [
   {
     title: 'Answer a few questions',
-    body: 'Tell us what happened, which platforms were involved, and how old your child was. About two minutes.',
+    body: 'Which platforms were involved, roughly how much they were used, and what harm followed. About two minutes.',
   },
   {
     title: 'We review your answers',
-    body: 'Licensed attorneys evaluate whether your family meets the criteria for the current litigation.',
+    body: 'Licensed attorneys evaluate the answers against the criteria for the current litigation.',
   },
   {
     title: 'You hear back quickly',
-    body: 'If you qualify, a member of the legal team reaches out to walk you through next steps. No obligation.',
+    body: 'If you qualify, a member of the legal team reaches out to walk through next steps. No obligation.',
   },
 ]
 
 export const FAQS = [
   {
-    q: 'How much does this cost?',
-    a: 'Nothing upfront. These cases are handled on a contingency basis, which means attorney fees are owed only if your case results in a recovery.',
-  },
-  {
     q: 'Who can file a claim?',
-    a: 'Generally, a parent or guardian files on behalf of a child who began using platforms such as Instagram, TikTok, Facebook, or Snapchat before turning 18 and who experienced documented harm. Young adults may also qualify for harm that began while they were minors.',
+    a: 'Either a parent or guardian on behalf of someone 17 or younger, or a young adult filing for themselves. About half of current cases are filed by a parent and just over 40 percent by the affected person directly.',
   },
   {
-    q: 'Which platforms are involved?',
-    a: 'The current litigation focuses on Meta (Instagram and Facebook), TikTok, Snapchat, and YouTube.',
+    q: 'What are the basic requirements?',
+    a: 'The affected person generally must have used Instagram, Facebook, TikTok, Snapchat, or YouTube between the ages of 5 and 17, be 25 or younger today, have used the platforms roughly three or more hours a day on average, have experienced a qualifying injury, and not currently be represented by another attorney for this claim.',
+  },
+  {
+    q: 'Which injuries qualify?',
+    a: 'Body dysmorphia, eating disorders, depression, severe anxiety, suicidal ideation or an attempt, and other forms of physical self-harm — where social media caused or substantially contributed to the harm.',
+  },
+  {
+    q: 'Does treatment matter?',
+    a: 'Yes. There generally needs to have been medical treatment for the alleged injury, such as therapy or prescription medication. If the harm began within the last three months and treatment has not started yet, an intention to seek professional treatment can be enough.',
+  },
+  {
+    q: 'How much does this cost?',
+    a: 'Nothing upfront. These cases are handled on a contingency basis, which means attorney fees are owed only if the case results in a recovery.',
   },
   {
     q: 'Do I need medical records to start?',
-    a: 'No. You do not need to gather anything to complete the review. If your family qualifies, the legal team will tell you exactly what is helpful and help you request it.',
+    a: 'No. Nothing needs to be gathered to complete this review. If the case qualifies, the legal team will explain exactly what is helpful and help request it.',
   },
   {
     q: 'Will this become a public lawsuit with my name on it?',
-    a: 'Claims involving minors are typically filed with privacy protections. Your case review is confidential, and an attorney will explain how your family’s information is handled before anything is filed.',
+    a: 'Claims involving minors are typically filed with privacy protections. This review is confidential, and an attorney will explain how the information is handled before anything is filed.',
   },
   {
     q: 'How long does a case take?',
@@ -177,3 +185,22 @@ export interface Testimonial {
  * disclaimer is already rendered beneath the grid.
  */
 export const TESTIMONIALS: Testimonial[] = []
+
+
+/**
+ * Eligibility checklist, taken from the client's "Social Media Criteria" sheet.
+ *
+ * Surfaced on-page deliberately. The client is measured on qualified-to-signed
+ * conversion and cost per SIGNED case, not raw lead volume, so filtering out
+ * people who cannot qualify before they reach the form is worth more than the
+ * extra submissions those people would have produced.
+ */
+export const ELIGIBILITY = [
+  'Used Instagram, Facebook, TikTok, Snapchat, or YouTube',
+  'Was between 5 and 17 years old while using them',
+  'Is 25 or younger today',
+  'Used the apps about 3 or more hours a day on average',
+  'Experienced a qualifying injury listed above',
+  'Received treatment, or intends to if the harm is recent',
+  'Is not already represented by an attorney for this claim',
+]

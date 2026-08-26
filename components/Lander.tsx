@@ -7,7 +7,7 @@ import { Testimonials } from '@/components/Testimonials'
 import { StickyCTA } from '@/components/StickyCTA'
 import { LitigationStatus } from '@/components/LitigationStatus'
 import { Logo } from '@/components/ui/Logo'
-import { HARMS, STEPS, FAQS, type Variant } from '@/lib/variants'
+import { HARMS, STEPS, FAQS, ELIGIBILITY, type Variant } from '@/lib/variants'
 
 const PHONE = process.env.NEXT_PUBLIC_PHONE ?? ''
 
@@ -126,6 +126,33 @@ function Harms() {
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Pre-qualification. The client is paid on signed cases, not lead
+            volume, so filtering here is worth more than the submissions it costs. */}
+        <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-border-default bg-white p-6 sm:p-8">
+          <h3 className="font-serif text-xl font-semibold text-ink">
+            You may qualify if the affected person:
+          </h3>
+          <ul className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+            {ELIGIBILITY.map((item) => (
+              <li key={item} className="flex items-start gap-2.5 text-sm text-text-secondary">
+                <svg
+                  width="18" height="18" viewBox="0 0 20 20" fill="none"
+                  className="mt-0.5 shrink-0 text-success" aria-hidden="true"
+                >
+                  <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="m6.5 10.3 2.4 2.4 4.6-5.4" stroke="currentColor" strokeWidth="1.8"
+                        strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 text-xs text-text-secondary">
+            Not sure about every item? Start the review anyway — the questions
+            are quick and the legal team will confirm.
+          </p>
         </div>
       </div>
     </section>

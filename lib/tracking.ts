@@ -46,6 +46,51 @@ export function readUtm(): UtmParams {
   }
 }
 
+/**
+ * Programmatic delivery keys.
+ *
+ * The client's own analysis flags that segment-level CPA is currently
+ * impossible for programmatic because spend is only keyed by campaign and date.
+ * Fixing that needs these delivery keys captured at the landing page and
+ * carried into the intake, so signed cases can be joined back to the line item,
+ * creative, and audience that produced them.
+ *
+ * Growth Channel appends these as macros on the click URL. We read whatever is
+ * present and pass it through; absent keys are simply omitted.
+ *
+ * ⚠️ Typeform silently DROPS hidden fields that are not declared on the form.
+ * Each key below has to be added as a hidden field on the client's Typeform or
+ * it will never reach their reporting.
+ */
+export const DELIVERY_KEY_PARAMS = [
+  'click_id',
+  'audience_id',
+  'segment_id',
+  'line_item_id',
+  'creative_id',
+  'placement',
+  'publisher',
+  'exchange',
+  'device',
+] as const
+
+export function readDeliveryKeys(): Record<string, string> {
+  if (typeof window === 'undefined') return {}
+  const p = new URLSearchParams(window.location.search)
+  const out: Record<string, string> = {}
+  for (const key of DELIVERY_KEY_PARAMS) {
+    const value = p.get(key)
+    // Unreplaced macros (e.g. "{CLICK_ID}") are worse than nothing — they
+    // pollute reporting with a value that looks real but means "not set".
+    if (value && !value.startsWith('{') && !value.startsWith('%7B')) {
+      out[key] = value
+    }
+  }
+  const fbclid = p.get('fbclid')
+  if (fbclid) out.fbclid = fbclid
+  return out
+}
+
 /** Meta's click id / browser id cookies — required for good CAPI match quality. */
 export function readMetaCookies(): { fbc?: string; fbp?: string } {
   if (typeof document === 'undefined') return {}

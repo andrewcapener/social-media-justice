@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { readUtm, trackConversion, trackClient } from '@/lib/tracking'
+import { readUtm, readDeliveryKeys, trackConversion, trackClient } from '@/lib/tracking'
 import { fireGrowthChannelConversion } from '@/lib/growth-channel'
 
 /**
@@ -127,6 +127,8 @@ export function TypeformEmbed({
       utm_campaign: utm.utmCampaign ?? '',
       utm_content: utm.utmContent ?? '',
       utm_term: utm.utmTerm ?? '',
+      // Programmatic delivery keys, when the click URL carries them.
+      ...readDeliveryKeys(),
     }
     for (const [key, value] of Object.entries(
       JSON.parse(prefillKey) as Record<string, string | undefined>

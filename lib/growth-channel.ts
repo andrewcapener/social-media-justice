@@ -34,10 +34,26 @@ export function fireGrowthChannelConversion(): void {
   conversionFired = true
 
   try {
+    // Belt and braces, because the intake form redirects to the client's
+    // webhook the instant it submits. An injected <script> can be cancelled
+    // mid-flight when the page unloads, which would silently lose the
+    // conversion — the exact event we cannot afford to drop.
+    //
+    // The script tag runs the vendor's full pixel logic when there is time.
+    // The keepalive fetch guarantees the request itself survives navigation,
+    // so the hit lands either way. The vendor dedupes on their side; a
+    // duplicate here is far cheaper than a miss.
     const script = document.createElement('script')
     script.async = true
     script.src = CONVERSION_PIXEL
     document.body.appendChild(script)
+
+    void fetch(CONVERSION_PIXEL, {
+      method: 'GET',
+      mode: 'no-cors',
+      credentials: 'include',
+      keepalive: true,
+    }).catch(() => {})
   } catch {
     // A tracking failure must never surface to the user or block the funnel.
   }

@@ -1,58 +1,117 @@
+import type { Metadata } from 'next'
 import { Footer } from '@/components/Footer'
 import { Logo } from '@/components/ui/Logo'
 
-const PHONE = process.env.NEXT_PUBLIC_PHONE ?? '1-800-CLAIM-NOW'
+export const metadata: Metadata = {
+  title: 'Thank You — Social Media Justice',
+  description: 'Your case review has been received.',
+  robots: { index: false, follow: false },
+}
 
-export default function ThankYou() {
+/**
+ * Post-submission confirmation.
+ *
+ * This is the emotional handoff point. Someone has just described their
+ * child's depression, eating disorder, or self-harm to a form, and the very
+ * next thing they see decides whether they feel heard or abandoned. It is also
+ * the step immediately before the e-sign retainer, which is where the signed
+ * rate is actually won or lost — so the page's job is to confirm receipt, set
+ * a concrete expectation, and remove the fear of what happens next.
+ *
+ * Deliberately no marketing, no upsell, no urgency mechanics. Anything that
+ * reads as a sales page here undercuts the trust the intake just earned.
+ */
+
+const NEXT_STEPS = [
+  {
+    title: 'A specialist reviews your answers',
+    body: 'Someone from the legal team reads through what you shared and checks it against the criteria for the current litigation.',
+  },
+  {
+    title: 'You hear back',
+    body: 'If your case qualifies, you will be contacted by phone, text, or email using the details you provided. Most families hear back within one business day.',
+  },
+  {
+    title: 'You decide what happens next',
+    body: 'Nothing is filed and nothing is committed to until you have spoken with an attorney and chosen to move forward. There is no cost to you either way.',
+  },
+]
+
+export default function ThankYouPage() {
   return (
     <>
-      <div className="min-h-screen bg-[#F8F9FC] flex flex-col">
-        <header className="bg-white border-b border-[#E5E7EB] px-5 sm:px-8 py-4">
+      <header className="border-b border-border-default bg-white">
+        <div className="mx-auto max-w-6xl px-5 py-3.5 sm:px-8">
           <Logo />
-        </header>
+        </div>
+      </header>
 
-        <main className="flex-1 flex items-center justify-center px-4 py-16">
-          <div className="bg-white rounded-2xl shadow-md border border-[#E5E7EB] max-w-lg w-full p-8 text-center">
-            <div className="mx-auto mb-6 w-16 h-16 rounded-full bg-[#059669]/10 flex items-center justify-center">
-              <svg viewBox="0 0 24 24" className="w-9 h-9 text-[#059669]" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 13l4 4L19 7" />
+      <main className="bg-white">
+        <div className="mx-auto max-w-2xl px-5 py-14 sm:px-8 sm:py-20">
+          <div className="flex justify-center">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-success/10">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <path
+                  d="M9 16.5 14 21.5 23 11"
+                  stroke="#0F9D6E"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </div>
-
-            <h1 className="text-2xl font-bold text-[#1A1A2E] mb-3">
-              Your Case Has Been Submitted
-            </h1>
-            <p className="text-[#6B7280] mb-6 leading-relaxed">
-              A legal specialist will contact you within the next few minutes.
-              Keep your phone nearby.
-            </p>
-
-            <div className="bg-[#F8F9FC] rounded-xl p-4 mb-6 text-left">
-              <p className="text-sm font-semibold text-[#374151] mb-2">What happens next:</p>
-              <ul className="space-y-2">
-                {[
-                  'A brief call to discuss the details of your accident',
-                  'An honest assessment of your case — completely free',
-                  'No obligation, no upfront costs — ever',
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-[#6B7280]">
-                    <span className="text-[#059669] font-bold mt-0.5">•</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <a
-              href={`tel:${PHONE.replace(/[^0-9+]/g, '')}`}
-              className="block w-full py-4 rounded-xl bg-[#1B3A6B] text-white font-bold text-lg hover:bg-[#163060] transition-colors mb-3"
-            >
-              📞 Call Now: {PHONE}
-            </a>
-            <p className="text-xs text-[#9CA3AF]">Don't want to wait? Call us directly and skip the queue.</p>
           </div>
-        </main>
-      </div>
+
+          <h1 className="mt-6 text-center font-serif text-[30px] font-semibold leading-tight text-ink sm:text-[38px]">
+            Thank you. We&apos;ve received your information.
+          </h1>
+
+          <p className="mx-auto mt-4 max-w-xl text-center text-lg leading-relaxed text-text-secondary">
+            Sharing this takes courage, and we don&apos;t take it lightly. Your
+            answers are with the legal team now.
+          </p>
+
+          <ol className="mt-12 space-y-8">
+            {NEXT_STEPS.map((step, i) => (
+              <li key={step.title} className="flex gap-5">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo font-bold text-white">
+                  {i + 1}
+                </span>
+                <div>
+                  <h2 className="font-bold text-ink">{step.title}</h2>
+                  <p className="mt-1.5 text-sm leading-relaxed text-text-secondary">
+                    {step.body}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-12 rounded-2xl border border-border-default bg-cream p-6 sm:p-8">
+            <h2 className="font-serif text-lg font-semibold text-ink">
+              Nothing to do right now
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+              You don&apos;t need to gather records or prepare anything. If it
+              would help your case, the legal team will tell you exactly what to
+              look for and help you request it.
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-text-secondary">
+              If you think of something you forgot to mention, keep it — you can
+              share it when the team reaches out.
+            </p>
+          </div>
+
+          <p className="mt-10 text-center text-sm text-text-secondary">
+            If you or someone you know is in crisis, call or text{' '}
+            <a href="tel:988" className="font-semibold text-indigo underline">
+              988
+            </a>{' '}
+            to reach the Suicide &amp; Crisis Lifeline, available 24/7.
+          </p>
+        </div>
+      </main>
+
       <Footer />
     </>
   )

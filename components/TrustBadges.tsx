@@ -1,7 +1,7 @@
 /**
  * Trust badge strip.
  *
- * Every claim here is verifiable and true of this funnel — no invented ratings,
+ * Every claim here is verifiable and true of this funnel. No invented ratings,
  * no fabricated award badges. If the client wants a star rating or a case-count
  * badge added, it needs a real source behind it first.
  */

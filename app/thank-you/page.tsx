@@ -3,7 +3,7 @@ import { Footer } from '@/components/Footer'
 import { Logo } from '@/components/ui/Logo'
 
 export const metadata: Metadata = {
-  title: 'Thank You — Social Media Justice',
+  title: 'Thank You | Social Media Justice',
   description: 'Your case review has been received.',
   robots: { index: false, follow: false },
 }
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
  * child's depression, eating disorder, or self-harm to a form, and the very
  * next thing they see decides whether they feel heard or abandoned. It is also
  * the step immediately before the e-sign retainer, which is where the signed
- * rate is actually won or lost — so the page's job is to confirm receipt, set
+ * rate is actually won or lost, so the page's job is to confirm receipt, set
  * a concrete expectation, and remove the fear of what happens next.
  *
  * Deliberately no marketing, no upsell, no urgency mechanics. Anything that
@@ -97,7 +97,7 @@ export default function ThankYouPage() {
               look for and help you request it.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-text-secondary">
-              If you think of something you forgot to mention, keep it — you can
+              If you think of something you forgot to mention, keep it, you can
               share it when the team reaches out.
             </p>
           </div>

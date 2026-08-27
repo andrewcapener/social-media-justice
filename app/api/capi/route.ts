@@ -6,7 +6,7 @@ import { createHash } from 'crypto'
  *
  * The browser pixel is increasingly blocked (iOS, ad blockers, ITP), so every
  * conversion is mirrored server-side. Client and server share an `eventId` and
- * Meta dedupes on it — see lib/tracking.ts.
+ * Meta dedupes on it. See lib/tracking.ts.
  *
  * PII is SHA-256 hashed here, server-side, and raw values are never persisted.
  */
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
   const token = process.env.FB_CAPI_ACCESS_TOKEN
   const datasetId = process.env.FB_CAPI_DATASET_ID
 
-  // Not configured yet — accept and no-op so the funnel is never blocked.
+  // Not configured yet. Accept and no-op so the funnel is never blocked.
   if (!token || !datasetId) {
     return Response.json({ ok: true, skipped: 'capi_not_configured' })
   }
@@ -126,7 +126,7 @@ export async function POST(request: NextRequest) {
     if (!res.ok) {
       const detail = await res.text()
       console.error('[capi] Meta rejected event:', res.status, detail)
-      // Still 200 to the browser — a tracking failure must not surface to users.
+      // Still 200 to the browser. A tracking failure must not surface to users.
       return Response.json({ ok: false, error: 'upstream_rejected' })
     }
 

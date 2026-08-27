@@ -11,7 +11,7 @@ const inter = Inter({
 
 /**
  * Serif display face. In legal, typography is the single largest lever on
- * perceived legitimacy — courts, firms, and institutions set in serif, and a
+ * perceived legitimacy. Courts, firms, and institutions set in serif, and a
  * pure-geometric-sans page reads like a startup, not counsel.
  */
 const sourceSerif = Source_Serif_4({
@@ -30,11 +30,11 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Social Media Justice — Free Case Review',
+  title: 'Social Media Justice | Free Case Review',
   description:
     'Harmed by YouTube, TikTok, Instagram, Snapchat, or Facebook before turning 18? Find out in about two minutes whether you may qualify. Free and confidential.',
   openGraph: {
-    title: 'Social Media Justice — Was Your Child Harmed?',
+    title: 'Social Media Justice | Was Your Child Harmed?',
     description:
       'Families are holding Meta, TikTok, and Snap accountable. Free, confidential case review.',
     type: 'website',
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Social Media Justice — Free Case Review',
+    title: 'Social Media Justice | Free Case Review',
     description:
       'Harmed by social media before turning 18? Find out if you may qualify.',
   },
@@ -58,14 +58,14 @@ export default function RootLayout({
   const gaId = process.env.NEXT_PUBLIC_GA_ID
   const trustedFormScript = process.env.TRUSTEDFORM_SCRIPT
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID
-  // Growth Channel retargeting — every page. The conversion pixel is NOT here;
+  // Growth Channel retargeting, every page. The conversion pixel is NOT here;
   // it fires only on the optimized event, from lib/growth-channel.ts.
   const gcRetargeting = process.env.NEXT_PUBLIC_GC_RETARGETING_PIXEL
 
   return (
     <html lang="en" className={`${inter.variable} ${sourceSerif.variable}`}>
       <head>
-        {/* Google Tag Manager — loaded first so the media team can manage tags
+        {/* Google Tag Manager, loaded first so the media team can manage tags
             without a deploy. If a pixel is added here AND in GTM it fires
             twice, so pick one home per tag. */}
         {gtmId && (
@@ -80,10 +80,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         )}
 
-        {/* Growth Channel retargeting — all pages */}
+        {/* Growth Channel retargeting, all pages */}
         {gcRetargeting && <script async src={gcRetargeting} />}
 
-        {/* Meta pixel — browser half of the pair. The server half fires from
+        {/* Meta pixel, browser half of the pair. The server half fires from
             /api/capi with a matching event_id so Meta dedupes. */}
         {pixelId && (
           <script

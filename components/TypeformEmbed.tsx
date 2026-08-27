@@ -7,24 +7,24 @@ import { fireGrowthChannelConversion } from '@/lib/growth-channel'
 /**
  * Embeds the client's existing Typeform survey.
  *
- * IMPORTANT — this mirrors the client's production embed contract exactly.
+ * IMPORTANT, this mirrors the client's production embed contract exactly.
  * Their live page passes two hidden fields their downstream backend and e-sign
  * retainer flow depend on:
  *
- *   entry_id  — `${random9digits}${epochMillis}`, their unique lead key
- *   url       — document.location.pathname, their attribution dimension
+ *   entry_id , `${random9digits}${epochMillis}`, their unique lead key
+ *   url      , document.location.pathname, their attribution dimension
  *
  * Change the shape of either and their backend stops recognizing our leads.
  * Everything we add (campaign, variant, utm_*) layers on top, never in place
  * of, those two. Because our paths are /{campaign}/{variant}, the `url` field
  * alone already carries our A/B attribution into their existing reporting.
  *
- * This is a `data-tf-live` id, not a classic /to/{id} form id — live embeds are
+ * This is a `data-tf-live` id, not a classic /to/{id} form id, live embeds are
  * initialized by embed.js scanning data attributes, so we build the element the
  * same way rather than calling createWidget().
  *
  * ⚠️ The mount target must stay VISIBLE. Typeform measures its container to
- * size the iframe, so a `display: none` wrapper means it never renders — and
+ * size the iframe, so a `display: none` wrapper means it never renders, and
  * if readiness is detected by looking for that iframe, the two deadlock. The
  * loading state is therefore an overlay on top of a laid-out container, never
  * a toggle on the container itself.
@@ -74,7 +74,7 @@ function makeEntryId(): string {
   return `${randomNum}${Date.now()}`
 }
 
-/** Typeform hidden fields are a flat `k=v,k=v` string — values can't contain commas. */
+/** Typeform hidden fields are a flat `k=v,k=v` string, values can't contain commas. */
 function serializeHidden(fields: Record<string, string>): string {
   return Object.entries(fields)
     .filter(([, v]) => v !== '')
@@ -198,7 +198,7 @@ export function TypeformEmbed({
 
   return (
     <div className={`relative ${className}`} style={{ minHeight: height }}>
-      {/* Always laid out and visible — Typeform measures this to size itself. */}
+      {/* Always laid out and visible, Typeform measures this to size itself. */}
       <div ref={containerRef} style={{ minHeight: height }} />
 
       {status !== 'ready' && (
@@ -222,7 +222,7 @@ export function TypeformEmbed({
               <span className="sr-only">Loading your case review form</span>
               {status === 'slow' && (
                 <p className="mt-3 px-6 text-xs text-text-secondary">
-                  Still loading — thanks for your patience.
+                  Still loading, thanks for your patience.
                 </p>
               )}
             </>

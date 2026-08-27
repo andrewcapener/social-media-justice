@@ -1,7 +1,7 @@
 /**
- * A/B variant configuration — all landing page copy lives here.
+ * A/B variant configuration. All landing page copy lives here.
  *
- * Attribution is path-based (agreed 8/11 — no subdomains), so a campaign URL is:
+ * Attribution is path-based (agreed 8/11, no subdomains), so a campaign URL is:
  *
  *   /fb-parents/a      → campaign "fb-parents", variant A
  *   /prog-retarget/b   → campaign "prog-retarget", variant B
@@ -18,7 +18,7 @@ export type VariantId = 'a' | 'b'
 
 export interface Variant {
   id: VariantId
-  /** Internal label for reporting — not shown to users. */
+  /** Internal label for reporting, not shown to users. */
   name: string
   hero: {
     eyebrow: string
@@ -29,7 +29,7 @@ export interface Variant {
   }
   /**
    * Hero imagery, sourced from Pexels and served locally so we never hotlink.
-   * These are stock models, not clients — see the disclosure in the footer,
+   * These are stock models, not clients. See the disclosure in the footer,
    * which attorney advertising rules require whenever actors depict clients.
    */
   image: {
@@ -43,7 +43,7 @@ export interface Variant {
 
 const SHARED_ASSURANCES = [
   'No cost unless your case wins',
-  'Confidential — reviewed by licensed attorneys',
+  'Confidential, reviewed by licensed attorneys',
   'Takes about 2 minutes',
 ]
 
@@ -70,7 +70,7 @@ export const VARIANTS: Record<VariantId, Variant> = {
     id: 'b',
     name: 'Self-submitter / 18-25',
     hero: {
-      eyebrow: 'Attorney advertising — free case review',
+      eyebrow: 'Attorney advertising. Free case review',
       headline: 'You Grew Up on These Apps.',
       headlineAccent: 'They Knew What It Was Doing to You.',
       subheadline:
@@ -96,7 +96,7 @@ export function getVariant(value: string): Variant | null {
   return isVariantId(value) ? VARIANTS[value] : null
 }
 
-/** Harms shown to both variants — mirrors the qualifying injury list. */
+/** Harms shown to both variants. Mirrors the qualifying injury list. */
 export const HARMS = [
   {
     title: 'Depression & Severe Anxiety',
@@ -142,7 +142,7 @@ export const FAQS = [
   },
   {
     q: 'Which injuries qualify?',
-    a: 'Body dysmorphia, eating disorders, depression, severe anxiety, suicidal ideation or an attempt, and other forms of physical self-harm — where social media caused or substantially contributed to the harm.',
+    a: 'Body dysmorphia, eating disorders, depression, severe anxiety, suicidal ideation or an attempt, and other forms of physical self-harm, where social media caused or substantially contributed to the harm.',
   },
   {
     q: 'Does treatment matter?',
@@ -173,7 +173,7 @@ export interface Testimonial {
 }
 
 /**
- * Client testimonials — EMPTY ON PURPOSE.
+ * Client testimonials. EMPTY ON PURPOSE.
  *
  * The Testimonials section does not render while this array is empty, which is
  * the correct default. Fabricated testimonials and invented recovery figures

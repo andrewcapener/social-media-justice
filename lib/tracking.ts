@@ -3,8 +3,8 @@
 /**
  * Client-side event tracking.
  *
- * Every conversion event is fired TWICE — once from the browser pixel and once
- * from the server via the Conversions API — sharing one `eventId`. Meta
+ * Every conversion event is fired TWICE, once from the browser pixel and once
+ * from the server via the Conversions API, sharing one `eventId`. Meta
  * deduplicates on (event_name, event_id), so this gives us the resilience of
  * server-side tracking without double-counting. Without a shared event_id the
  * client would report roughly 2x the real conversions.
@@ -80,7 +80,7 @@ export function readDeliveryKeys(): Record<string, string> {
   const out: Record<string, string> = {}
   for (const key of DELIVERY_KEY_PARAMS) {
     const value = p.get(key)
-    // Unreplaced macros (e.g. "{CLICK_ID}") are worse than nothing — they
+    // Unreplaced macros (e.g. "{CLICK_ID}") are worse than nothing, they
     // pollute reporting with a value that looks real but means "not set".
     if (value && !value.startsWith('{') && !value.startsWith('%7B')) {
       out[key] = value
@@ -91,7 +91,7 @@ export function readDeliveryKeys(): Record<string, string> {
   return out
 }
 
-/** Meta's click id / browser id cookies — required for good CAPI match quality. */
+/** Meta's click id / browser id cookies, required for good CAPI match quality. */
 export function readMetaCookies(): { fbc?: string; fbp?: string } {
   if (typeof document === 'undefined') return {}
   const get = (name: string) =>

@@ -36,7 +36,7 @@ interface SearchOptions {
 function apiKey(): string {
   const key = process.env.PEXELS_API_KEY
   if (!key) {
-    throw new Error('PEXELS_API_KEY is not set — add it to .env.local')
+    throw new Error('PEXELS_API_KEY is not set, add it to .env.local')
   }
   return key
 }
@@ -56,7 +56,7 @@ export async function searchPhotos(
 
   const res = await fetch(`${PEXELS_API}/search?${params}`, {
     headers: { Authorization: apiKey() },
-    // Cache aggressively — imagery doesn't change between builds.
+    // Cache aggressively, imagery doesn't change between builds.
     next: { revalidate: 60 * 60 * 24 },
   })
 

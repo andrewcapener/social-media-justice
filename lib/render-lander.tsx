@@ -13,7 +13,7 @@ import { getVariant } from '@/lib/variants'
  */
 export function landerMetadata(): Metadata {
   return {
-    title: 'Social Media Harm Claims — Free Case Review',
+    title: 'Social Media Harm Claims | Free Case Review',
     description:
       'Harmed by YouTube, TikTok, Instagram, Snapchat, or Facebook before turning 18? Find out in about two minutes whether you may qualify. Free and confidential.',
     // Ad destinations must not compete with the canonical page in search.

@@ -7,14 +7,14 @@ import { useEffect, useState } from 'react'
  *
  * The claim here is deliberately factual: filing deadlines on these claims are
  * real and vary by state. We are NOT running a fake countdown or a fabricated
- * scarcity signal — this is attorney advertising for a real firm, and invented
+ * scarcity signal. This is attorney advertising for a real firm, and invented
  * urgency is exactly the kind of thing that draws bar complaints.
  */
 export function UrgencyBar() {
   const [dismissed, setDismissed] = useState(true)
 
-  // Render nothing on the server pass, then reveal — avoids a hydration flash
-  // and lets us respect a prior dismissal.
+  // Render nothing on the server pass, then reveal. This avoids a hydration
+  // flash and lets us respect a prior dismissal.
   useEffect(() => {
     try {
       setDismissed(sessionStorage.getItem('smjn_urgency_dismissed') === '1')

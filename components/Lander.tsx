@@ -92,7 +92,7 @@ function Hero({ variant, campaign }: { variant: Variant; campaign: string }) {
               {hero.cta}
             </p>
             <p className="mb-4 text-center text-xs text-text-secondary">
-              Free and confidential — about 2 minutes
+              Free and confidential, about 2 minutes
             </p>
             <TypeformEmbed campaign={campaign} variant={variant.id} />
           </div>
@@ -150,7 +150,7 @@ function Harms() {
             ))}
           </ul>
           <p className="mt-5 text-xs text-text-secondary">
-            Not sure about every item? Start the review anyway — the questions
+            Not sure about every item? Start the review anyway. The questions
             are quick and the legal team will confirm.
           </p>
         </div>

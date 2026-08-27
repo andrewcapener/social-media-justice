@@ -8,7 +8,7 @@ import { getVariant, VARIANT_IDS } from '@/lib/variants'
  *
  *   /{campaign}/{variant}
  *
- * `campaign` is opaque — media buyers mint new paths without a code change, and
+ * `campaign` is opaque. Media buyers mint new paths without a code change, and
  * the segment flows through to the Typeform `url` hidden field and Meta CAPI.
  * `variant` must be a known A/B id.
  */
@@ -24,14 +24,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { variant: variantId } = await params
   const variant = getVariant(variantId)
 
-  const title = 'Social Media Harm Claims — Free Case Review'
+  const title = 'Social Media Harm Claims | Free Case Review'
   const description =
-    'Was your child harmed by Instagram, TikTok, Snapchat, or Facebook? Find out in about two minutes whether your family may qualify. Free and confidential.'
+    'Harmed by YouTube, TikTok, Instagram, Snapchat, or Facebook before turning 18? Find out in about two minutes whether you may qualify. Free and confidential.'
 
   return {
     title,
     description,
-    // Campaign paths are ad traffic — keep them out of the index and never
+    // Campaign paths are ad traffic. Keep them out of the index and never
     // let them compete with the canonical page.
     robots: { index: false, follow: false },
     openGraph: {

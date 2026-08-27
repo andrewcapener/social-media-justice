@@ -77,8 +77,8 @@ export default function TermsOfService() {
             <p>
               By submitting your contact information and checking the consent box, you expressly consent to be contacted
               by Clifford Press LLC DBA Claim Anchor and its network of participating attorneys via email, telephone,
-              and/or SMS/text message — including through automated dialing technology, pre-recorded messages, and/or
-              artificial intelligence — regarding your potential legal claim. Consent is not required as a condition of
+              and/or SMS/text message, including through automated dialing technology, pre-recorded messages, and/or
+              artificial intelligence, regarding your potential legal claim. Consent is not required as a condition of
               any purchase. Message and data rates may apply. Reply STOP to opt out.
             </p>
           </section>

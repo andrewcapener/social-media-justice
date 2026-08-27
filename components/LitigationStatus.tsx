@@ -7,7 +7,7 @@ import { LITIGATION_FACTS, LITIGATION_VERIFIED_ON } from '@/lib/litigation'
  * This is the page's strongest legitimacy asset and it costs nothing to be
  * honest about: the underlying case really is a federal MDL with a public
  * docket, real bellwether outcomes, and a named judge. Verifiable specifics
- * outperform adjectives — "one of the fastest-growing MDLs in the federal
+ * outperform adjectives, "one of the fastest-growing MDLs in the federal
  * system" beats "trusted by thousands" precisely because a reader can check it.
  *
  * These are matters of public record about the litigation as a whole, NOT
@@ -24,7 +24,7 @@ export function LitigationStatus() {
               Where the litigation stands
             </p>
             <h2 className="mt-3 font-serif text-[26px] font-semibold leading-tight sm:text-[32px]">
-              This is active federal litigation — not a cold call
+              This is active federal litigation, not a cold call
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/70">
               Claims are consolidated in{' '}

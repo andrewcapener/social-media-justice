@@ -1,7 +1,7 @@
 /**
  * Site-wide footer.
  *
- * The disclaimers here are compliance surface, not decoration — attorney
+ * The disclaimers here are compliance surface, not decoration, attorney
  * advertising notice, no-attorney-client-relationship, no-guarantee-of-recovery,
  * TCPA consent language, and the medical-advice disclaimer. Meta also requires
  * a reachable privacy policy for lead-gen ad accounts. Do not trim these

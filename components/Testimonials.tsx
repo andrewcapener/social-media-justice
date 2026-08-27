@@ -36,7 +36,7 @@ export function Testimonials() {
               </blockquote>
               <figcaption className="mt-4 text-xs font-semibold text-text-secondary">
                 {t.name}
-                {t.location && <span className="font-normal"> — {t.location}</span>}
+                {t.location && <span className="font-normal">, {t.location}</span>}
               </figcaption>
             </figure>
           ))}

@@ -13,13 +13,13 @@ const PHONE = process.env.NEXT_PUBLIC_PHONE ?? ''
 
 function Nav() {
   return (
-    <header className="border-b border-border-default bg-white">
+    <header className="border-b border-line bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5 sm:px-8">
         <Logo />
         {PHONE && (
           <a
             href={`tel:${PHONE.replace(/[^0-9+]/g, '')}`}
-            className="text-sm font-semibold text-indigo transition-colors hover:text-indigo-soft"
+            className="text-sm font-semibold text-navy transition-colors hover:text-stone"
           >
             {PHONE}
           </a>
@@ -37,19 +37,19 @@ function Hero({ variant, campaign }: { variant: Variant; campaign: string }) {
     <section className="bg-white">
       <div className="mx-auto max-w-6xl px-5 pb-12 pt-8 sm:px-8 lg:grid lg:grid-cols-[1fr_minmax(0,500px)] lg:gap-12 lg:pb-16">
         <div className="lg:pt-3">
-          <span className="inline-flex items-center gap-2 rounded-full bg-indigo/8 px-3 py-1.5 text-xs font-semibold text-indigo">
+          <span className="inline-flex items-center gap-2 rounded-full bg-navy/8 px-3 py-1.5 text-xs font-semibold text-navy">
             <span className="h-2 w-2 rounded-full bg-success" />
             {hero.eyebrow}
           </span>
 
-          <h1 className="mt-5 font-serif text-[34px] font-semibold leading-[1.1] tracking-[-0.015em] text-ink sm:text-[42px] lg:text-[48px]">
+          <h1 className="mt-5 font-sans text-[34px] font-extrabold leading-[1.08] tracking-[-0.02em] text-navy sm:text-[42px] lg:text-[48px]">
             {hero.headline}{' '}
-            <span className={storyLed ? 'text-amber-deep' : 'text-indigo-soft'}>
+            <span className={storyLed ? 'text-brass-deep' : 'text-stone'}>
               {hero.headlineAccent}
             </span>
           </h1>
 
-          <p className="mt-4 max-w-xl text-lg leading-relaxed text-text-secondary">
+          <p className="mt-4 max-w-xl font-serif text-lg leading-relaxed text-stone">
             {hero.subheadline}
           </p>
 
@@ -57,7 +57,7 @@ function Hero({ variant, campaign }: { variant: Variant; campaign: string }) {
             {variant.assurances.map((item) => (
               <li
                 key={item}
-                className="flex items-center gap-1.5 text-sm text-text-secondary"
+                className="flex items-center gap-1.5 text-sm text-stone"
               >
                 <span className="font-bold text-success">✓</span>
                 {item}
@@ -76,7 +76,7 @@ function Hero({ variant, campaign }: { variant: Variant; campaign: string }) {
               sizes="(max-width: 1024px) 100vw, 560px"
               className="aspect-[16/10] w-full rounded-2xl object-cover"
             />
-            <figcaption className="mt-2 text-[11px] text-text-secondary/70">
+            <figcaption className="mt-2 text-[11px] text-stone/70">
               Photo: {variant.image.credit}. Depiction by a model, not an actual client.
             </figcaption>
           </figure>
@@ -86,12 +86,12 @@ function Hero({ variant, campaign }: { variant: Variant; campaign: string }) {
         <div className="mt-8 lg:mt-0 lg:sticky lg:top-6 lg:self-start">
           <div
             id="review"
-            className="rounded-2xl border border-border-default bg-white p-4 shadow-[0_4px_32px_rgba(26,35,64,0.10)] sm:p-6"
+            className="rounded-2xl border border-line bg-white p-4 shadow-[0_4px_32px_rgba(26,35,64,0.10)] sm:p-6"
           >
-            <p className="mb-1 text-center text-base font-bold text-ink">
+            <p className="mb-1 text-center text-base font-bold text-navy">
               {hero.cta}
             </p>
-            <p className="mb-4 text-center text-xs text-text-secondary">
+            <p className="mb-4 text-center text-xs text-stone">
               Free and confidential, about 2 minutes
             </p>
             <TypeformEmbed campaign={campaign} variant={variant.id} />
@@ -104,12 +104,12 @@ function Hero({ variant, campaign }: { variant: Variant; campaign: string }) {
 
 function Harms() {
   return (
-    <section className="bg-cream py-14">
+    <section className="bg-paper py-14">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <h2 className="text-center font-serif text-[28px] font-semibold tracking-[-0.01em] text-ink sm:text-[34px]">
+        <h2 className="text-center font-sans text-[28px] font-extrabold tracking-[-0.015em] text-navy sm:text-[34px]">
           Harm These Platforms Are Accused of Causing
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-center text-text-secondary">
+        <p className="mx-auto mt-3 max-w-2xl text-center text-stone">
           Lawsuits allege these products were engineered to maximize time spent,
           with known risks to developing minds.
         </p>
@@ -118,10 +118,10 @@ function Harms() {
           {HARMS.map((harm) => (
             <div
               key={harm.title}
-              className="rounded-xl border border-border-default bg-white p-6"
+              className="rounded-xl border border-line bg-white p-6"
             >
-              <h3 className="font-bold text-ink">{harm.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+              <h3 className="font-bold text-navy">{harm.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-stone">
                 {harm.body}
               </p>
             </div>
@@ -130,13 +130,13 @@ function Harms() {
 
         {/* Pre-qualification. The client is paid on signed cases, not lead
             volume, so filtering here is worth more than the submissions it costs. */}
-        <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-border-default bg-white p-6 sm:p-8">
-          <h3 className="font-serif text-xl font-semibold text-ink">
+        <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-line bg-white p-6 sm:p-8">
+          <h3 className="font-serif text-xl font-semibold text-navy">
             You may qualify if the affected person:
           </h3>
           <ul className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2">
             {ELIGIBILITY.map((item) => (
-              <li key={item} className="flex items-start gap-2.5 text-sm text-text-secondary">
+              <li key={item} className="flex items-start gap-2.5 text-sm text-stone">
                 <svg
                   width="18" height="18" viewBox="0 0 20 20" fill="none"
                   className="mt-0.5 shrink-0 text-success" aria-hidden="true"
@@ -149,7 +149,7 @@ function Harms() {
               </li>
             ))}
           </ul>
-          <p className="mt-5 text-xs text-text-secondary">
+          <p className="mt-5 text-xs text-stone">
             Not sure about every item? Start the review anyway. The questions
             are quick and the legal team will confirm.
           </p>
@@ -186,23 +186,23 @@ function Steps({ cta }: { cta: string }) {
   return (
     <section className="bg-white py-14">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <h2 className="text-center font-serif text-[28px] font-semibold tracking-[-0.01em] text-ink sm:text-[34px]">
+        <h2 className="text-center font-sans text-[28px] font-extrabold tracking-[-0.015em] text-navy sm:text-[34px]">
           How It Works
         </h2>
 
         <ol className="mt-10 grid gap-8 sm:grid-cols-3">
           {STEPS.map((step, i) => (
             <li key={step.title} className="text-center sm:text-left">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-indigo/8 text-indigo sm:mx-0">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-navy/8 text-navy sm:mx-0">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   {STEP_ICONS[i]}
                 </svg>
               </div>
-              <p className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-amber-deep">
+              <p className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-brass-deep">
                 Step {i + 1}
               </p>
-              <h3 className="mt-1 font-bold text-ink">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+              <h3 className="mt-1 font-bold text-navy">{step.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-stone">
                 {step.body}
               </p>
             </li>
@@ -212,11 +212,11 @@ function Steps({ cta }: { cta: string }) {
         <div className="mt-12 text-center">
           <a
             href="#review"
-            className="inline-block rounded-xl bg-amber px-8 py-4 font-bold text-white shadow-sm transition-colors hover:bg-amber-deep"
+            className="inline-block rounded-lg bg-brass px-8 py-4 font-sans font-bold text-navy shadow-sm transition-colors hover:bg-brass-deep hover:text-paper"
           >
             {cta}
           </a>
-          <p className="mt-3 text-xs text-text-secondary">
+          <p className="mt-3 text-xs text-stone">
             No cost, no obligation. Recovery is not guaranteed.
           </p>
         </div>
@@ -227,22 +227,22 @@ function Steps({ cta }: { cta: string }) {
 
 function Faq() {
   return (
-    <section className="bg-cream py-14">
+    <section className="bg-paper py-14">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
-        <h2 className="text-center font-serif text-[28px] font-semibold tracking-[-0.01em] text-ink sm:text-[34px]">
+        <h2 className="text-center font-sans text-[28px] font-extrabold tracking-[-0.015em] text-navy sm:text-[34px]">
           Common Questions
         </h2>
 
-        <div className="mt-8 divide-y divide-border-default overflow-hidden rounded-xl border border-border-default bg-white">
+        <div className="mt-8 divide-y divide-line overflow-hidden rounded-xl border border-line bg-white">
           {FAQS.map((faq) => (
             <details key={faq.q} className="group px-5 py-4">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-ink">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-navy">
                 {faq.q}
-                <span className="shrink-0 text-xl leading-none text-indigo-soft transition-transform group-open:rotate-45">
+                <span className="shrink-0 text-xl leading-none text-stone transition-transform group-open:rotate-45">
                   +
                 </span>
               </summary>
-              <p className="mt-3 text-sm leading-relaxed text-text-secondary">
+              <p className="mt-3 text-sm leading-relaxed text-stone">
                 {faq.a}
               </p>
             </details>

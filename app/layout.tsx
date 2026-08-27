@@ -1,19 +1,17 @@
 import type { Metadata } from 'next'
-import { Inter, Source_Serif_4 } from 'next/font/google'
+import { Archivo, Source_Serif_4 } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
-const inter = Inter({
+/** Wordmark and interface face, per the logo system. */
+const archivo = Archivo({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-archivo',
 })
 
-/**
- * Serif display face. In legal, typography is the single largest lever on
- * perceived legitimacy. Courts, firms, and institutions set in serif, and a
- * pure-geometric-sans page reads like a startup, not counsel.
- */
+/** Tagline and long-form face, per the logo system. */
 const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
   display: 'swap',
@@ -63,7 +61,7 @@ export default function RootLayout({
   const gcRetargeting = process.env.NEXT_PUBLIC_GC_RETARGETING_PIXEL
 
   return (
-    <html lang="en" className={`${inter.variable} ${sourceSerif.variable}`}>
+    <html lang="en" className={`${archivo.variable} ${sourceSerif.variable}`}>
       <head>
         {/* Google Tag Manager, loaded first so the media team can manage tags
             without a deploy. If a pixel is added here AND in GTM it fires

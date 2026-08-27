@@ -59,19 +59,19 @@ const BADGES = [
 
 export function TrustBadges() {
   return (
-    <section className="border-y border-border-default bg-white py-4">
+    <section className="border-y border-line bg-white py-4">
       <ul className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-2 px-5 sm:px-8">
         {BADGES.map((badge) => (
           <li
             key={badge.label}
-            className="flex items-center gap-1.5 rounded-full border border-border-default px-3 py-1.5 text-[11px] font-semibold text-text-secondary sm:text-xs"
+            className="flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-[11px] font-semibold text-stone sm:text-xs"
           >
             <svg
               width="14"
               height="14"
               viewBox="0 0 16 16"
               fill="none"
-              className="shrink-0 text-indigo-soft"
+              className="shrink-0 text-stone"
               aria-hidden="true"
             >
               {badge.icon}

@@ -40,7 +40,7 @@ const NEXT_STEPS = [
 export default function ThankYouPage() {
   return (
     <>
-      <header className="border-b border-border-default bg-white">
+      <header className="border-b border-line bg-white">
         <div className="mx-auto max-w-6xl px-5 py-3.5 sm:px-8">
           <Logo />
         </div>
@@ -62,11 +62,11 @@ export default function ThankYouPage() {
             </div>
           </div>
 
-          <h1 className="mt-6 text-center font-serif text-[30px] font-semibold leading-tight text-ink sm:text-[38px]">
+          <h1 className="mt-6 text-center font-sans text-[30px] font-extrabold leading-tight tracking-[-0.02em] text-navy sm:text-[38px]">
             Thank you. We&apos;ve received your information.
           </h1>
 
-          <p className="mx-auto mt-4 max-w-xl text-center text-lg leading-relaxed text-text-secondary">
+          <p className="mx-auto mt-4 max-w-xl text-center font-serif text-lg leading-relaxed text-stone">
             Sharing this takes courage, and we don&apos;t take it lightly. Your
             answers are with the legal team now.
           </p>
@@ -74,12 +74,12 @@ export default function ThankYouPage() {
           <ol className="mt-12 space-y-8">
             {NEXT_STEPS.map((step, i) => (
               <li key={step.title} className="flex gap-5">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo font-bold text-white">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy font-bold text-white">
                   {i + 1}
                 </span>
                 <div>
-                  <h2 className="font-bold text-ink">{step.title}</h2>
-                  <p className="mt-1.5 text-sm leading-relaxed text-text-secondary">
+                  <h2 className="font-bold text-navy">{step.title}</h2>
+                  <p className="mt-1.5 text-sm leading-relaxed text-stone">
                     {step.body}
                   </p>
                 </div>
@@ -87,24 +87,24 @@ export default function ThankYouPage() {
             ))}
           </ol>
 
-          <div className="mt-12 rounded-2xl border border-border-default bg-cream p-6 sm:p-8">
-            <h2 className="font-serif text-lg font-semibold text-ink">
+          <div className="mt-12 rounded-2xl border border-line bg-paper p-6 sm:p-8">
+            <h2 className="font-sans text-lg font-bold text-navy">
               Nothing to do right now
             </h2>
-            <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+            <p className="mt-2 text-sm leading-relaxed text-stone">
               You don&apos;t need to gather records or prepare anything. If it
               would help your case, the legal team will tell you exactly what to
               look for and help you request it.
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-text-secondary">
+            <p className="mt-4 text-sm leading-relaxed text-stone">
               If you think of something you forgot to mention, keep it, you can
               share it when the team reaches out.
             </p>
           </div>
 
-          <p className="mt-10 text-center text-sm text-text-secondary">
+          <p className="mt-10 text-center text-sm text-stone">
             If you or someone you know is in crisis, call or text{' '}
-            <a href="tel:988" className="font-semibold text-indigo underline">
+            <a href="tel:988" className="font-semibold text-navy underline">
               988
             </a>{' '}
             to reach the Suicide &amp; Crisis Lifeline, available 24/7.

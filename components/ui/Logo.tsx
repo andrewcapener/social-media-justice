@@ -1,49 +1,38 @@
 import Link from 'next/link'
 
 /**
- * Brand mark: a solid shield with a knocked-out balance scale.
+ * Brand mark from the Social Media Justice logo system.
  *
- * Reworked from thin strokes to a filled emblem. Hairline geometry reads as
- * fintech and disappears at favicon size; a solid crest reads institutional
- * and holds at 16px, which is what "legitimate" actually means visually in
- * this category. The scale is knocked out of the shield rather than drawn on
- * top so the mark stays one confident shape.
+ * A courthouse portico reduced to geometry on a 64x64 grid: entablature, three
+ * columns, plinth, and a notch cut from the left of the entablature. It reads
+ * as a civic institution rather than a law firm, which is the right register
+ * for a page whose credibility rests on an active federal MDL.
+ *
+ * Drawn in solid blocks with no strokes, so it holds at favicon size. Minimum
+ * sizes from the system: horizontal lockup 200px, stacked 96px, mark alone 20px.
  */
-export function LogoMark({ className = '' }: { className?: string }) {
+export function LogoMark({
+  className = '',
+  style,
+}: {
+  className?: string
+  style?: React.CSSProperties
+}) {
   return (
     <svg
-      viewBox="0 0 32 32"
-      fill="none"
+      viewBox="0 0 64 64"
+      fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={style}
       aria-hidden="true"
     >
-      <defs>
-        <mask id="smj-scale-mask">
-          {/* White = shield kept, black = knocked out */}
-          <rect width="32" height="32" fill="black" />
-          <path
-            d="M16 2 27 5.9v9.4c0 6.9-4.7 12-11 14.1-6.3-2.1-11-7.2-11-14.1V5.9L16 2Z"
-            fill="white"
-          />
-          <g stroke="black" strokeWidth="1.6" strokeLinecap="round">
-            <path d="M16 10v11" />
-            <path d="M10.25 12.5h11.5" />
-            <path d="M12.75 21.25h6.5" />
-            <path d="M7.9 12.5c0 1.95 1.05 3.15 2.35 3.15s2.35-1.2 2.35-3.15" />
-            <path d="M19.4 12.5c0 1.95 1.05 3.15 2.35 3.15s2.35-1.2 2.35-3.15" />
-          </g>
-          <circle cx="16" cy="8.6" r="1.15" fill="black" />
-        </mask>
-      </defs>
-
-      <path
-        d="M16 2 27 5.9v9.4c0 6.9-4.7 12-11 14.1-6.3-2.1-11-7.2-11-14.1V5.9L16 2Z"
-        fill="currentColor"
-        mask="url(#smj-scale-mask)"
-      />
-      {/* Accent keystone at the crest */}
-      <circle cx="16" cy="8.6" r="1.5" fill="#E8963C" />
+      <rect x="5" y="4" width="54" height="11" rx="1.5" />
+      <path d="M5 15 H11 L5 22 Z" />
+      <rect x="11" y="19" width="10" height="32" />
+      <rect x="27" y="19" width="10" height="32" />
+      <rect x="43" y="19" width="10" height="32" />
+      <rect x="3" y="51" width="58" height="9" rx="1.5" />
     </svg>
   )
 }
@@ -53,7 +42,7 @@ export function Logo({
   tone = 'dark',
 }: {
   href?: string
-  /** `dark` = ink mark for light backgrounds; `light` = white mark for the footer. */
+  /** `dark` = navy mark for light grounds. `light` = paper mark for navy grounds. */
   tone?: 'dark' | 'light'
 }) {
   const light = tone === 'light'
@@ -62,20 +51,20 @@ export function Logo({
     <Link
       href={href}
       className={`flex items-center gap-3 transition-opacity hover:opacity-80 ${
-        light ? 'text-white' : 'text-ink'
+        light ? 'text-paper' : 'text-navy'
       }`}
     >
-      <LogoMark className="h-9 w-9 shrink-0" />
+      <LogoMark className="h-8 w-8 shrink-0" />
       <span className="leading-none">
-        <span className="block font-serif text-[19px] font-semibold tracking-[-0.01em]">
+        <span className="block font-sans text-[17px] font-bold uppercase tracking-[0.02em]">
           Social Media Justice
         </span>
         <span
-          className={`mt-1 block text-[9.5px] font-semibold uppercase tracking-[0.22em] ${
-            light ? 'text-white/55' : 'text-text-secondary'
+          className={`mt-1 block font-serif text-[11px] italic ${
+            light ? 'text-paper/60' : 'text-stone'
           }`}
         >
-          Holding Platforms Accountable
+          Holding platforms accountable
         </span>
       </span>
     </Link>

@@ -18,10 +18,10 @@ export function Testimonials() {
   return (
     <section className="bg-white py-14">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <p className="text-center text-xs font-bold uppercase tracking-[0.18em] text-amber-deep">
+        <p className="text-center text-xs font-bold uppercase tracking-[0.18em] text-brass-deep">
           Real families
         </p>
-        <h2 className="mt-2 text-center font-serif text-[28px] font-semibold tracking-[-0.01em] text-ink sm:text-[34px]">
+        <h2 className="mt-2 text-center font-sans text-[28px] font-extrabold tracking-[-0.015em] text-navy sm:text-[34px]">
           Families We&apos;ve Helped
         </h2>
 
@@ -29,12 +29,12 @@ export function Testimonials() {
           {TESTIMONIALS.map((t) => (
             <figure
               key={t.name}
-              className="rounded-xl border border-border-default bg-cream p-6"
+              className="rounded-xl border border-line bg-paper p-6"
             >
-              <blockquote className="text-sm leading-relaxed text-text-primary">
+              <blockquote className="text-sm leading-relaxed text-navy-soft">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
-              <figcaption className="mt-4 text-xs font-semibold text-text-secondary">
+              <figcaption className="mt-4 text-xs font-semibold text-stone">
                 {t.name}
                 {t.location && <span className="font-normal">, {t.location}</span>}
               </figcaption>
@@ -42,7 +42,7 @@ export function Testimonials() {
           ))}
         </div>
 
-        <p className="mt-6 text-center text-xs text-text-secondary">
+        <p className="mt-6 text-center text-xs text-stone">
           Individual results vary based on the facts of each case. Past outcomes
           do not guarantee future results.
         </p>

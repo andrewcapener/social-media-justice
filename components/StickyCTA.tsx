@@ -35,14 +35,14 @@ export function StickyCTA({
 
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-40 border-t border-border-default bg-white/95 p-3 backdrop-blur transition-transform duration-300 lg:hidden ${
+      className={`fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 p-3 backdrop-blur transition-transform duration-300 lg:hidden ${
         show ? 'translate-y-0' : 'translate-y-full'
       }`}
     >
       <a
         href="#review"
         onClick={() => trackClient('StickyCTAClick', { campaign, variant })}
-        className="block rounded-xl bg-amber py-3.5 text-center font-bold text-white transition-colors active:bg-amber-deep"
+        className="block rounded-lg bg-brass py-3.5 text-center font-sans font-bold text-navy transition-colors active:bg-brass-deep"
       >
         {label}
       </a>

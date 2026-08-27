@@ -187,9 +187,9 @@ export function TypeformEmbed({
 
   if (!liveId) {
     return (
-      <div className="rounded-xl border-2 border-dashed border-border-default bg-cream p-8 text-center">
-        <p className="text-sm font-semibold text-text-primary">Typeform not configured</p>
-        <p className="mt-1 text-xs text-text-secondary">
+      <div className="rounded-xl border-2 border-dashed border-line bg-paper p-8 text-center">
+        <p className="text-sm font-semibold text-navy-soft">Typeform not configured</p>
+        <p className="mt-1 text-xs text-stone">
           Set <code className="font-mono">NEXT_PUBLIC_TYPEFORM_LIVE_ID</code> in your environment.
         </p>
       </div>
@@ -203,25 +203,25 @@ export function TypeformEmbed({
 
       {status !== 'ready' && (
         <div
-          className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-cream text-center"
+          className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-paper text-center"
           aria-live="polite"
         >
           {status === 'error' ? (
             <div className="pointer-events-auto px-6">
-              <p className="font-semibold text-text-primary">
+              <p className="font-semibold text-navy-soft">
                 We couldn&apos;t load the form.
               </p>
-              <p className="mt-1 text-sm text-text-secondary">
+              <p className="mt-1 text-sm text-stone">
                 Please refresh the page, or call and we&apos;ll take your
                 information directly.
               </p>
             </div>
           ) : (
             <>
-              <div className="h-8 w-8 animate-spin rounded-full border-2 border-border-default border-t-indigo" />
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-navy" />
               <span className="sr-only">Loading your case review form</span>
               {status === 'slow' && (
-                <p className="mt-3 px-6 text-xs text-text-secondary">
+                <p className="mt-3 px-6 text-xs text-stone">
                   Still loading, thanks for your patience.
                 </p>
               )}

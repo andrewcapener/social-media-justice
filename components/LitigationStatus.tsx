@@ -16,14 +16,14 @@ import { LITIGATION_FACTS, LITIGATION_VERIFIED_ON } from '@/lib/litigation'
  */
 export function LitigationStatus() {
   return (
-    <section className="bg-ink py-14 text-white">
+    <section className="bg-navy py-14 text-white">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-12">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brass">
               Where the litigation stands
             </p>
-            <h2 className="mt-3 font-serif text-[26px] font-semibold leading-tight sm:text-[32px]">
+            <h2 className="mt-3 font-sans text-[26px] font-extrabold leading-tight tracking-[-0.015em] sm:text-[32px]">
               This is active federal litigation, not a cold call
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/70">
@@ -39,7 +39,7 @@ export function LitigationStatus() {
             <dl className="mt-8 grid gap-6 sm:grid-cols-3">
               {LITIGATION_FACTS.map((fact) => (
                 <div key={fact.label}>
-                  <dt className="font-serif text-[26px] font-semibold text-amber">
+                  <dt className="font-sans text-[26px] font-extrabold text-brass">
                     {fact.value}
                   </dt>
                   <dd className="mt-1 text-xs leading-relaxed text-white/60">

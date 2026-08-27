@@ -26,7 +26,7 @@ export function UrgencyBar() {
   if (dismissed) return null
 
   return (
-    <div className="relative bg-ink px-10 py-2.5 text-center text-white">
+    <div className="relative bg-navy px-10 py-2.5 text-center text-white">
       <p className="text-[13px] leading-snug">
         <span className="font-semibold">Filing deadlines apply.</span>{' '}
         <span className="text-white/80">

@@ -1,26 +1,31 @@
 @import "tailwindcss";
 
 /*
- * Tailwind v4 is CSS-first: theme tokens are declared here, NOT in
- * tailwind.config.ts (which v4 ignores unless pulled in with @config).
- * Adding a color here is what makes `bg-ink`, `text-amber`, etc. exist.
+ * Brand tokens from the Social Media Justice logo system.
  *
- * Deliberately not the competitor's maroon/red ambulance-chaser palette —
- * this audience is worried parents, so it reads protective and credible.
+ * Tailwind v4 is CSS-first: theme tokens live here, NOT in tailwind.config.ts
+ * (which v4 ignores). Adding a color here is what makes `bg-navy`, `text-brass`
+ * and friends exist.
+ *
+ * CONTRAST RULE, taken from the logo system and not negotiable:
+ * never put Paper on Brass. It measures 2.98:1, well under the 4.5:1 floor.
+ * Navy on Brass clears AA at 4.5:1 with almost nothing to spare, so Brass is
+ * an accent surface with navy text on it, never a light-text surface.
  */
 @theme {
-  --color-ink: #1a2340;          /* headlines, footer, primary brand */
-  --color-indigo: #232f5c;       /* primary surfaces */
-  --color-indigo-soft: #5b7bb8;
-  --color-amber: #e8963c;        /* CTA — high contrast against indigo */
-  --color-amber-deep: #c77a26;
-  --color-success: #0f9d6e;
-  --color-text-primary: #15192b;
-  --color-text-secondary: #5a6376;
-  --color-cream: #faf8f5;        /* warm neutral bg, softer than clinical white */
-  --color-border-default: #e6e2dc;
+  --color-navy: #132840;         /* Civic Navy, primary brand */
+  --color-navy-soft: #3d4a5c;    /* body text, secondary surfaces */
+  --color-brass: #b0873c;        /* accent. Navy text only. */
+  --color-brass-deep: #7e5f28;
+  --color-stone: #5f6a79;        /* secondary text */
+  --color-paper: #f6f3ee;        /* warm ground */
+  --color-line: #d9d2c7;         /* borders on paper */
+  --color-flag: #8e2c2c;         /* reserved for warnings, used sparingly */
+  --color-success: #2f6b4f;
 
-  --font-sans: var(--font-inter), system-ui, sans-serif;
+  /* Archivo carries the wordmark and interface. Source Serif 4 carries
+     taglines and long-form reading. */
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
   --font-serif: var(--font-serif-src), Georgia, 'Times New Roman', serif;
 }
 
@@ -33,7 +38,7 @@ html {
 }
 
 body {
-  color: var(--color-text-primary);
+  color: var(--color-navy-soft);
   background: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -43,10 +48,10 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-cream);
+  background: var(--color-paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--color-line);
   border-radius: 3px;
 }
 

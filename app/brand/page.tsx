@@ -73,7 +73,7 @@ export default function BrandPage() {
             <div className="flex flex-1 items-center gap-3 rounded-lg border border-line bg-white p-8 text-navy">
               <LogoMark className="h-10 w-10 shrink-0" />
               <span className="leading-none">
-                <span className="block font-sans text-lg font-bold uppercase tracking-[0.02em]">
+                <span className="block font-sans text-xl font-bold tracking-[-0.015em]">
                   Social Media Justice
                 </span>
                 <span className="mt-1 block font-serif text-xs italic text-stone">
@@ -84,7 +84,7 @@ export default function BrandPage() {
             <div className="flex flex-1 items-center gap-3 rounded-lg bg-navy p-8 text-paper">
               <LogoMark className="h-10 w-10 shrink-0" />
               <span className="leading-none">
-                <span className="block font-sans text-lg font-bold uppercase tracking-[0.02em]">
+                <span className="block font-sans text-xl font-bold tracking-[-0.015em]">
                   Social Media Justice
                 </span>
                 <span className="mt-1 block font-serif text-xs italic text-paper/60">

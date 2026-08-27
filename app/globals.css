@@ -23,8 +23,8 @@
   --color-flag: #8e2c2c;         /* reserved for warnings, used sparingly */
   --color-success: #2f6b4f;
 
-  /* Archivo carries the wordmark and interface. Source Serif 4 carries
-     taglines and long-form reading. */
+  /* Archivo carries interface: buttons, labels, headlines. Newsreader carries
+     the wordmark, taglines, and long-form reading. Two faces, clear jobs. */
   --font-sans: var(--font-archivo), system-ui, sans-serif;
   --font-serif: var(--font-serif-src), Georgia, 'Times New Roman', serif;
 }

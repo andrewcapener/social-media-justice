@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Archivo, Source_Serif_4 } from 'next/font/google'
+import { Archivo, Newsreader } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
@@ -11,11 +11,19 @@ const archivo = Archivo({
   variable: '--font-archivo',
 })
 
-/** Tagline and long-form face, per the logo system. */
-const sourceSerif = Source_Serif_4({
+/**
+ * Serif face: wordmark, tagline, and long-form reading.
+ *
+ * Replaces Source Serif 4 rather than joining it. Two serifs doing adjacent
+ * jobs reads as indecision, and a wordmark set in a face that appears nowhere
+ * else stops feeling like part of the same identity. Newsreader is humanist
+ * and warmer, which suits an audience of parents reading about their children.
+ */
+const newsreader = Newsreader({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['600', '700'],
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
   // Distinct from the Tailwind `--font-serif` token, which points at this.
   variable: '--font-serif-src',
 })
@@ -61,7 +69,7 @@ export default function RootLayout({
   const gcRetargeting = process.env.NEXT_PUBLIC_GC_RETARGETING_PIXEL
 
   return (
-    <html lang="en" className={`${archivo.variable} ${sourceSerif.variable}`}>
+    <html lang="en" className={`${archivo.variable} ${newsreader.variable}`}>
       <head>
         {/* Google Tag Manager, loaded first so the media team can manage tags
             without a deploy. If a pixel is added here AND in GTM it fires

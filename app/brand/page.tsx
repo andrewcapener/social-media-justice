@@ -73,7 +73,7 @@ export default function BrandPage() {
             <div className="flex flex-1 items-center gap-3 rounded-lg border border-line bg-white p-8 text-navy">
               <LogoMark className="h-10 w-10 shrink-0" />
               <span className="leading-none">
-                <span className="block font-sans text-xl font-bold tracking-[-0.015em]">
+                <span className="block font-serif text-[22px] font-semibold tracking-[-0.01em]">
                   Social Media Justice
                 </span>
                 <span className="mt-1 block font-serif text-xs italic text-stone">
@@ -84,7 +84,7 @@ export default function BrandPage() {
             <div className="flex flex-1 items-center gap-3 rounded-lg bg-navy p-8 text-paper">
               <LogoMark className="h-10 w-10 shrink-0" />
               <span className="leading-none">
-                <span className="block font-sans text-xl font-bold tracking-[-0.015em]">
+                <span className="block font-serif text-[22px] font-semibold tracking-[-0.01em]">
                   Social Media Justice
                 </span>
                 <span className="mt-1 block font-serif text-xs italic text-paper/60">
@@ -138,7 +138,7 @@ export default function BrandPage() {
           <div className="space-y-6">
             <div className="rounded-lg border border-line p-6">
               <p className="font-sans text-xs font-bold uppercase tracking-[0.14em] text-stone">
-                Archivo, wordmark and interface
+                Archivo, headlines and interface
               </p>
               <p className="mt-3 font-sans text-3xl font-extrabold tracking-[-0.02em] text-navy">
                 Was Your Child Harmed by Social Media?
@@ -149,14 +149,14 @@ export default function BrandPage() {
             </div>
             <div className="rounded-lg border border-line p-6">
               <p className="font-sans text-xs font-bold uppercase tracking-[0.14em] text-stone">
-                Source Serif 4, tagline and long-form
+                Newsreader, wordmark, tagline and long-form
               </p>
               <p className="mt-3 font-serif text-xl leading-relaxed text-navy-soft">
                 Families across the country are holding YouTube, TikTok,
                 Instagram, Snapchat, and Facebook accountable.
               </p>
               <p className="mt-2 font-mono text-xs text-stone">
-                Body copy, taglines, disclaimers. Weights 400 and 600.
+                Wordmark, body copy, taglines. Weights 400 to 600, roman and italic.
               </p>
             </div>
           </div>

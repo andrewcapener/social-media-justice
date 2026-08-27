@@ -56,7 +56,7 @@ export function Logo({
     >
       <LogoMark className="h-8 w-8 shrink-0" />
       <span className="leading-none">
-        <span className="block font-sans text-[19px] font-bold tracking-[-0.015em]">
+        <span className="block font-serif text-[21px] font-semibold tracking-[-0.01em]">
           Social Media Justice
         </span>
         <span

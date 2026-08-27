@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Social Media Justice — Free Case Review',
   description:
-    'Was your child harmed by Instagram, TikTok, Snapchat, or Facebook? Find out in about two minutes whether your family may qualify. Free and confidential.',
+    'Harmed by YouTube, TikTok, Instagram, Snapchat, or Facebook before turning 18? Find out in about two minutes whether you may qualify. Free and confidential.',
   openGraph: {
     title: 'Social Media Justice — Was Your Child Harmed?',
     description:
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Social Media Justice — Free Case Review',
     description:
-      'Was your child harmed by social media? Find out if your family qualifies.',
+      'Harmed by social media before turning 18? Find out if you may qualify.',
   },
 }
 

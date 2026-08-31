@@ -26,6 +26,57 @@ const PALETTE = [
   { name: 'Slate', hex: '#3D4A5C', use: 'Body text' },
 ]
 
+/**
+ * Social profile artwork, rendered from these same tokens.
+ *
+ * Facebook circle-crops the profile photo and applies two different cover
+ * crops (desktop keeps the width and cuts the height, mobile does the
+ * reverse), so the cover is composed inside a centered 1090 by 500 safe area
+ * and clear of the bottom-left corner where the avatar overlaps.
+ */
+const SOCIAL = [
+  {
+    file: 'fb-profile-navy-1080.png',
+    label: 'Facebook profile photo',
+    spec: '1080 x 1080. Mark only, the wordmark is illegible at avatar size.',
+  },
+  {
+    file: 'fb-profile-paper-1080.png',
+    label: 'Profile photo, light',
+    spec: '1080 x 1080. Alternate for light-ground placements.',
+  },
+  {
+    file: 'fb-cover-1640x856.png',
+    label: 'Facebook cover',
+    spec: '1640 x 856. Composed inside a centered 1090 x 500 safe area.',
+  },
+  {
+    file: 'fb-cover-SAFE-AREA-GUIDE.png',
+    label: 'Cover safe-area guide',
+    spec: 'Reference only, do not upload. Shows the crop and avatar overlap.',
+  },
+  {
+    file: 'fb-post-1-parents-1080.png',
+    label: 'Post, parents',
+    spec: '1080 x 1080.',
+  },
+  {
+    file: 'fb-post-2-adults-1080.png',
+    label: 'Post, self-submitters',
+    spec: '1080 x 1080.',
+  },
+  {
+    file: 'fb-post-3-explainer-1080.png',
+    label: 'Post, explainer',
+    spec: '1080 x 1080.',
+  },
+  {
+    file: 'og-share-1200x630.png',
+    label: 'Link share card',
+    spec: '1200 x 630. Open Graph preview for shared links.',
+  },
+]
+
 function Swatch({ name, hex, use }: { name: string; hex: string; use: string }) {
   return (
     <div className="overflow-hidden rounded-lg border border-line">
@@ -160,6 +211,39 @@ export default function BrandPage() {
               </p>
             </div>
           </div>
+        </Section>
+
+        <Section title="Social profile artwork">
+          <div className="grid gap-5 sm:grid-cols-2">
+            {SOCIAL.map((a) => (
+              <a
+                key={a.file}
+                href={`/brand/social/${a.file}`}
+                className="group overflow-hidden rounded-lg border border-line transition-colors hover:border-brass"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/brand/social/${a.file}`}
+                  alt={a.label}
+                  className="w-full bg-paper object-contain"
+                />
+                <div className="border-t border-line p-4">
+                  <p className="font-sans text-sm font-bold text-navy group-hover:underline">
+                    {a.label}
+                  </p>
+                  <p className="mt-1 font-serif text-xs leading-relaxed text-stone">
+                    {a.spec}
+                  </p>
+                  <p className="mt-1 font-mono text-[11px] text-stone">{a.file}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+          <p className="mt-5 max-w-2xl font-serif text-sm leading-relaxed text-stone">
+            No photography by design. Stock imagery of distressed young people is
+            both an attorney-advertising problem and a rejection risk in a
+            Special Ad Category.
+          </p>
         </Section>
 
         <Section title="Files">

@@ -132,7 +132,16 @@ export function trackClient(eventName: string, opts: TrackOptions = {}): string 
   }
 
   if (typeof window.gtag === 'function') {
-    window.gtag('event', eventName, custom)
+    // GA4 has its own recommended event names, and only recognized names get
+    // the built-in reporting and Key event handling. Meta's "Lead" would land
+    // as an unrecognized custom event and sit outside GA4's lead reports, so
+    // translate on the way out rather than sending Meta's vocabulary to Google.
+    const GA4_NAMES: Record<string, string> = {
+      Lead: 'generate_lead',
+      ViewContent: 'view_item',
+      Contact: 'contact',
+    }
+    window.gtag('event', GA4_NAMES[eventName] ?? eventName, custom)
   }
 
   window.dataLayer = window.dataLayer ?? []

@@ -139,7 +139,11 @@ export function TypeformEmbed({
     window[SUBMIT_CALLBACK] = () => {
       // The optimized event. Fires Meta (pixel + CAPI, deduped) and the
       // Growth Channel conversion pixel together, once per completed form.
-      void trackConversion('Lead', { campaign, variant })
+      // event_id is the Typeform entry_id on purpose. It already travels
+      // with the submission into the client's n8n intake, so if their system
+      // also reports this lead to Meta, both reports carry the same id and
+      // Meta dedupes instead of double counting.
+      void trackConversion('Lead', { campaign, variant, eventId: entryId })
       fireGrowthChannelConversion()
     }
 

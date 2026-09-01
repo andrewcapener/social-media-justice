@@ -184,13 +184,24 @@ export async function trackServer(
   }
 }
 
-/** Fire both sides of a conversion event with a shared id. */
+/**
+ * Fire both sides of a conversion event with a shared id.
+ *
+ * Pass `eventId` to pin the event to an id that already exists elsewhere in
+ * the funnel. Lead uses the Typeform `entry_id`, which means the client's
+ * downstream system can fire its own CAPI event for the same submission and
+ * Meta collapses the two rather than counting the lead twice. Two systems
+ * reporting the same conversion under different ids inflate volume, and Meta
+ * then optimizes toward the inflated number.
+ */
 export async function trackConversion(
   eventName: string,
-  opts: Parameters<typeof trackServer>[2] & Record<string, unknown> = {}
+  opts: Parameters<typeof trackServer>[2] &
+    Record<string, unknown> & { eventId?: string } = {}
 ): Promise<string> {
-  const eventId = newEventId()
-  trackClient(eventName, { ...opts, eventId })
-  await trackServer(eventName, eventId, opts)
+  const { eventId: provided, ...rest } = opts
+  const eventId = provided ?? newEventId()
+  trackClient(eventName, { ...rest, eventId })
+  await trackServer(eventName, eventId, rest)
   return eventId
 }

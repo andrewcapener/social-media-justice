@@ -201,7 +201,18 @@ export function TypeformEmbed({
   }
 
   return (
-    <div className={`relative ${className}`} style={{ minHeight: height }}>
+    /* data-intake-form is a deliberate, server-rendered marker so external
+       monitoring can confirm an ad's destination actually carries the form.
+       A campaign once spent five days pointing at a 404 and nothing caught it,
+       because a page that returns 200 with no form on it looks identical to a
+       working one. Do not remove: it is load-bearing for that check, and
+       matching on visible copy instead breaks whenever a variant reworks its
+       headline. */
+    <div
+      className={`relative ${className}`}
+      style={{ minHeight: height }}
+      data-intake-form="1"
+    >
       {/* Always laid out and visible, Typeform measures this to size itself. */}
       <div ref={containerRef} style={{ minHeight: height }} />
 

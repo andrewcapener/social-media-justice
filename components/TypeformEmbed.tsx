@@ -13,6 +13,8 @@ import { fireGrowthChannelConversion } from '@/lib/growth-channel'
  *
  *   entry_id , `${random9digits}${epochMillis}`, their unique lead key
  *   url      , document.location.pathname, their attribution dimension
+ *   domain   , document.location.host, added 2026-09-04 so they can tell
+ *              this site apart from the others sharing the same Typeform
  *
  * Change the shape of either and their backend stops recognizing our leads.
  * Everything we add (campaign, variant, utm_*) layers on top, never in place
@@ -116,9 +118,13 @@ export function TypeformEmbed({
     const utm = readUtm()
 
     const hidden: Record<string, string> = {
-      // The client's two required fields, first and unmodified.
+      // The client's required fields, first and unmodified. `domain` was added
+      // to their embed on 2026-09-04: the same Typeform serves several sites,
+      // and pathname alone cannot tell theirs apart from ours. Sent as `host`
+      // rather than `hostname` to match their script exactly.
       entry_id: entryId,
       url: window.location.pathname,
+      domain: window.location.host,
       // Ours, additive only.
       campaign,
       variant,

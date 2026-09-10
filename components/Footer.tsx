@@ -33,33 +33,36 @@ export function Footer() {
           on 2026-09-10. Firm-only branding, per Andrew, taking the second of
           the two options AJ offered. The name survives in the page title, the
           domain and the copyright line below.
+
+          Logo leads, then the ATTORNEY ADVERTISING label, then the firm
+          identification. The whole group still sits at the top of the footer
+          rather than the bottom, because a disclosure nobody scrolls to is not
+          a disclosure.
         */}
-        <p className="text-sm font-bold uppercase tracking-wide text-white">
+        {FIRM_LOGO_SRC_LIGHT && (
+          <Image
+            src={FIRM_LOGO_SRC_LIGHT}
+            alt={FIRM_NAME}
+            width={319}
+            height={47}
+            className="h-7 w-auto"
+          />
+        )}
+
+        <p className="pt-2 text-sm font-bold uppercase tracking-wide text-white">
           Attorney Advertising
         </p>
 
         {/*
           Firm identification. Bar advertising rules want the name and office
           address of the firm responsible for the ad, and this is the block that
-          satisfies that. It sits directly under the Attorney Advertising header
-          rather than at the bottom, because a disclosure nobody scrolls to is
-          not a disclosure.
+          satisfies that.
+
+          The name stays in text rather than being carried by the logo alone. A
+          bar identification disclosure has to be readable when images are
+          blocked, and alt text is not the same thing.
         */}
         <div className="space-y-2 text-white">
-          {FIRM_LOGO_SRC_LIGHT && (
-            <Image
-              src={FIRM_LOGO_SRC_LIGHT}
-              alt={FIRM_NAME}
-              width={319}
-              height={47}
-              className="h-7 w-auto"
-            />
-          )}
-          {/*
-            The name stays in text under the logo rather than being replaced by
-            it. A bar identification disclosure has to be readable when images
-            are blocked, and alt text alone is not the same thing.
-          */}
           <p className="font-bold">{FIRM_NAME}</p>
           {FIRM_ADDRESS_LINES.map((line) => (
             <p key={line}>{line}</p>

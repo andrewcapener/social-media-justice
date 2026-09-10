@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server'
 import { createHash } from 'crypto'
+import { parkLead, type MatchData } from '@/lib/leadStore'
 
 /**
  * Meta Conversions API relay.
@@ -75,7 +76,7 @@ export async function POST(request: NextRequest) {
     undefined
   const userAgent = request.headers.get('user-agent') ?? undefined
 
-  const userData: Record<string, string | string[]> = {}
+  const userData: MatchData = {}
   const em = hash(body.email)
   const ph = hashPhone(body.phone)
   const fn = hash(body.firstName)
@@ -111,6 +112,27 @@ export async function POST(request: NextRequest) {
 
   if (process.env.FB_CAPI_TEST_EVENT_CODE) {
     payload.test_event_code = process.env.FB_CAPI_TEST_EVENT_CODE
+  }
+
+  /**
+   * Park the match data for the later Qualified/Retained event.
+   *
+   * `Lead` is the only point in the funnel where the browser is present, so
+   * it is the only chance to capture fbc/fbp. The qualification signal comes
+   * back from the client's n8n hours later carrying nothing but this same
+   * entry_id. Without this the later event reaches Meta unattributable.
+   *
+   * Awaited rather than fired-and-forgotten: serverless freezes the function
+   * the moment the response is returned, which kills detached promises.
+   * parkLead never throws and no-ops when the store is unconfigured.
+   */
+  if (eventName === 'Lead') {
+    await parkLead(eventId, {
+      userData,
+      eventSourceUrl: body.eventSourceUrl,
+      campaign: body.campaign,
+      variant: body.variant,
+    })
   }
 
   try {

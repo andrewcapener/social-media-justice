@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server'
 import { createHash } from 'crypto'
+import { recallLead, type MatchData } from '@/lib/leadStore'
 
 /**
  * The qualification relay.
@@ -62,7 +63,15 @@ async function reportQualified(eventId: string, sourceUrl: string, req: NextRequ
   const datasetId = process.env.FB_CAPI_DATASET_ID
   if (!token || !datasetId) return
 
-  const userData: Record<string, string> = {}
+  /**
+   * Start from whatever was parked at Lead time. The redirect happens in a
+   * browser so the cookies below are usually present and current, but only the
+   * parked copy carries the hashed email, phone and name the form collected.
+   * Live values win where both exist; they describe this request.
+   */
+  const parked = await recallLead(eventId)
+  const userData: MatchData = { ...(parked?.userData ?? {}) }
+
   const ip =
     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     req.headers.get('x-real-ip') ??
@@ -88,6 +97,10 @@ async function reportQualified(eventId: string, sourceUrl: string, req: NextRequ
         event_source_url: sourceUrl,
         action_source: 'website',
         user_data: userData,
+        custom_data: {
+          campaign: parked?.campaign,
+          variant: parked?.variant,
+        },
       },
     ],
   }

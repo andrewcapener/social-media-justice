@@ -13,7 +13,6 @@
  * and in the header only; the body narrative stays unbranded.
  */
 import Image from 'next/image'
-import { Logo } from '@/components/ui/Logo'
 import {
   FIRM_NAME,
   FIRM_ADDRESS_LINES,
@@ -29,9 +28,13 @@ export function Footer() {
   return (
     <footer className="bg-navy py-12 text-white/70">
       <div className="mx-auto max-w-4xl space-y-4 px-5 text-xs leading-relaxed sm:px-8">
-        <Logo tone="light" />
-
-        <p className="pt-2 text-sm font-bold uppercase tracking-wide text-white">
+        {/*
+          The Social Media Justice wordmark was removed here and from the header
+          on 2026-09-10. Firm-only branding, per Andrew, taking the second of
+          the two options AJ offered. The name survives in the page title, the
+          domain and the copyright line below.
+        */}
+        <p className="text-sm font-bold uppercase tracking-wide text-white">
           Attorney Advertising
         </p>
 

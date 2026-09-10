@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Footer } from '@/components/Footer'
-import { Logo } from '@/components/ui/Logo'
+import { FirmMark } from '@/components/ui/FirmMark'
 
 export const metadata: Metadata = {
   title: 'Thank You | Social Media Justice',
@@ -42,7 +42,7 @@ export default function ThankYouPage() {
     <>
       <header className="border-b border-line bg-white">
         <div className="mx-auto max-w-6xl px-5 py-3.5 sm:px-8">
-          <Logo />
+          <FirmMark />
         </div>
       </header>
 

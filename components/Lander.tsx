@@ -6,72 +6,35 @@ import { TrustBadges } from '@/components/TrustBadges'
 import { Testimonials } from '@/components/Testimonials'
 import { StickyCTA } from '@/components/StickyCTA'
 import { LitigationStatus } from '@/components/LitigationStatus'
-import { Logo } from '@/components/ui/Logo'
-import { FIRM_NAME, FIRM_WEBSITE, FIRM_LOGO_SRC } from '@/lib/legal'
+import { FirmMark } from '@/components/ui/FirmMark'
 import { HARMS, STEPS, FAQS, ELIGIBILITY, type Variant } from '@/lib/variants'
 
 const PHONE = process.env.NEXT_PUBLIC_PHONE ?? ''
 
 /**
- * Firm mark for the header's right-hand slot.
+ * Header, firm-branded.
  *
- * The colour logo, because the header sits on white. Falls back to the firm
- * name as a text mark if the asset is ever missing: an identification that
- * renders as plain text is fine, one that renders as a broken image is not.
+ * AJ offered two options on 2026-09-10: double brand, keeping the unbranded
+ * Social Media Justice mark for narrative and reader flow, or flip to the firm
+ * logo alone. Andrew chose firm only, so the wordmark comes out and the firm
+ * takes the primary left position.
  *
- * Sized off the intrinsic 283x40 of the asset so it never distorts. Narrower
- * on mobile so it cannot crowd the unbranded mark on the left.
- */
-function FirmMark() {
-  return (
-    <a
-      href={FIRM_WEBSITE}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={FIRM_NAME}
-      className="shrink-0 transition-opacity hover:opacity-70"
-    >
-      {FIRM_LOGO_SRC ? (
-        <Image
-          src={FIRM_LOGO_SRC}
-          alt={FIRM_NAME}
-          width={283}
-          height={40}
-          priority
-          className="h-6 w-auto sm:h-8"
-        />
-      ) : (
-        <span className="block max-w-[9rem] text-right text-[11px] font-semibold uppercase leading-tight tracking-wide text-navy sm:max-w-none sm:text-xs">
-          {FIRM_NAME}
-        </span>
-      )}
-    </a>
-  )
-}
-
-/**
- * Header, double-branded per AJ on 2026-09-10.
- *
- * The unbranded Social Media Justice mark stays top left so the narrative and
- * reader flow are unchanged. The firm goes top right. Those two positions plus
- * the footer are the only places the firm appears; the body stays unbranded.
+ * The Social Media Justice name still appears in the page title, the domain and
+ * the footer copyright. Only the header and footer marks are the firm's.
  */
 function Nav() {
   return (
     <header className="border-b border-line bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5 sm:px-8">
-        <Logo />
-        <div className="flex items-center gap-4">
-          {PHONE && (
-            <a
-              href={`tel:${PHONE.replace(/[^0-9+]/g, '')}`}
-              className="text-sm font-semibold text-navy transition-colors hover:text-stone"
-            >
-              {PHONE}
-            </a>
-          )}
-          <FirmMark />
-        </div>
+        <FirmMark />
+        {PHONE && (
+          <a
+            href={`tel:${PHONE.replace(/[^0-9+]/g, '')}`}
+            className="text-sm font-semibold text-navy transition-colors hover:text-stone"
+          >
+            {PHONE}
+          </a>
+        )}
       </div>
     </header>
   )

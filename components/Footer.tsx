@@ -12,8 +12,16 @@
  * and the language and address have to be exactly right. The firm appears here
  * and in the header only; the body narrative stays unbranded.
  */
+import Image from 'next/image'
 import { Logo } from '@/components/ui/Logo'
-import { FIRM_NAME, FIRM_ADDRESS_LINES, FIRM_LICENSURE } from '@/lib/legal'
+import {
+  FIRM_NAME,
+  FIRM_ADDRESS_LINES,
+  FIRM_LICENSURE,
+  FIRM_LOGO_SRC_LIGHT,
+  CLIENT_PRIVACY_POLICY_URL,
+  CLIENT_DISCLAIMER_URL,
+} from '@/lib/legal'
 
 export function Footer() {
   const year = new Date().getFullYear()
@@ -34,7 +42,21 @@ export function Footer() {
           rather than at the bottom, because a disclosure nobody scrolls to is
           not a disclosure.
         */}
-        <div className="text-white">
+        <div className="space-y-2 text-white">
+          {FIRM_LOGO_SRC_LIGHT && (
+            <Image
+              src={FIRM_LOGO_SRC_LIGHT}
+              alt={FIRM_NAME}
+              width={319}
+              height={47}
+              className="h-7 w-auto"
+            />
+          )}
+          {/*
+            The name stays in text under the logo rather than being replaced by
+            it. A bar identification disclosure has to be readable when images
+            are blocked, and alt text alone is not the same thing.
+          */}
           <p className="font-bold">{FIRM_NAME}</p>
           {FIRM_ADDRESS_LINES.map((line) => (
             <p key={line}>{line}</p>
@@ -110,7 +132,7 @@ export function Footer() {
         */}
         <div className="flex flex-wrap gap-x-5 gap-y-2 pt-2">
           <a
-            href="https://socialmediajusticehelp.com/privacy-policy"
+            href={CLIENT_PRIVACY_POLICY_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="underline hover:text-white"
@@ -118,7 +140,7 @@ export function Footer() {
             Privacy Policy
           </a>
           <a
-            href="https://socialmediajusticehelp.com/disclaimer"
+            href={CLIENT_DISCLAIMER_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="underline hover:text-white"

@@ -15,10 +15,12 @@ const PHONE = process.env.NEXT_PUBLIC_PHONE ?? ''
 /**
  * Firm mark for the header's right-hand slot.
  *
- * Until AJ sends the approved logo this renders the firm name as a text mark.
- * That is a real identification rather than a placeholder, so the page is
- * presentable to the firm for approval exactly as it stands, and we are not
- * scraping an unapproved logo off their site in the meantime.
+ * The colour logo, because the header sits on white. Falls back to the firm
+ * name as a text mark if the asset is ever missing: an identification that
+ * renders as plain text is fine, one that renders as a broken image is not.
+ *
+ * Sized off the intrinsic 283x40 of the asset so it never distorts. Narrower
+ * on mobile so it cannot crowd the unbranded mark on the left.
  */
 function FirmMark() {
   return (
@@ -26,11 +28,18 @@ function FirmMark() {
       href={FIRM_WEBSITE}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={FIRM_NAME}
       className="shrink-0 transition-opacity hover:opacity-70"
     >
       {FIRM_LOGO_SRC ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={FIRM_LOGO_SRC} alt={FIRM_NAME} className="h-7 w-auto" />
+        <Image
+          src={FIRM_LOGO_SRC}
+          alt={FIRM_NAME}
+          width={283}
+          height={40}
+          priority
+          className="h-6 w-auto sm:h-8"
+        />
       ) : (
         <span className="block max-w-[9rem] text-right text-[11px] font-semibold uppercase leading-tight tracking-wide text-navy sm:max-w-none sm:text-xs">
           {FIRM_NAME}

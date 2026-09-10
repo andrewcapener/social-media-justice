@@ -67,14 +67,23 @@ export const FIRM_LICENSURE =
 export const FIRM_WEBSITE = 'https://simmonsfirm.com'
 
 /**
- * Firm logo for the header's right-hand brand slot.
+ * Firm logo, both tones.
  *
- * Null until AJ sends the approved asset. The header falls back to the firm
- * name set as a text mark, which is a legitimate identification in its own
- * right, rather than rendering a broken image or an unapproved logo scraped
- * from their site. Drop the file in /public/brand/ and set the path here.
+ * Taken from the firm's own theme assets and self-hosted rather than hotlinked,
+ * so their server is not serving our traffic and a change on their end cannot
+ * break or silently alter our header.
+ *
+ * Two files because the mark is not tone-agnostic. The colour version is black
+ * text plus their #0072CE blue and needs a light ground; the white version is
+ * a single flat #fff and disappears on one. Header is white, footer is navy, so
+ * each gets the one that works. Using the wrong one renders an invisible logo,
+ * which on an attorney advertising disclosure is a compliance problem, not a
+ * cosmetic one.
+ *
+ * Both fall back to the firm name as a text mark if the file fails to load.
  */
-export const FIRM_LOGO_SRC: string | null = null
+export const FIRM_LOGO_SRC: string | null = '/brand/firm/simmons-color.svg'
+export const FIRM_LOGO_SRC_LIGHT: string | null = '/brand/firm/simmons-white.svg'
 
 /**
  * Draft mode.

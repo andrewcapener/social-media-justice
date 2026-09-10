@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Archivo, Newsreader } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
+import { AWAITING_FIRM_APPROVAL } from '@/lib/legal'
 import './globals.css'
 
 /** Wordmark and interface face, per the logo system. */
@@ -53,6 +54,19 @@ export const metadata: Metadata = {
     description:
       'Harmed by social media before turning 18? Find out if you may qualify.',
   },
+  /**
+   * Draft mode. AJ is presenting this to Simmons as a draft lander pending
+   * their approval and has asked that zero traffic reach it until they sign
+   * off. Paused campaigns handle paid traffic; this handles crawlers, so a
+   * firm-branded page nobody approved cannot end up in a search index.
+   *
+   * Set AWAITING_FIRM_APPROVAL to false in lib/legal.ts at launch. Nothing
+   * else needs to change, and forgetting it means the site never ranks, which
+   * is a loud enough failure to notice.
+   */
+  robots: AWAITING_FIRM_APPROVAL
+    ? { index: false, follow: false, nocache: true }
+    : undefined,
 }
 
 export default function RootLayout({

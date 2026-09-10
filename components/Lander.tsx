@@ -7,23 +7,62 @@ import { Testimonials } from '@/components/Testimonials'
 import { StickyCTA } from '@/components/StickyCTA'
 import { LitigationStatus } from '@/components/LitigationStatus'
 import { Logo } from '@/components/ui/Logo'
+import { FIRM_NAME, FIRM_WEBSITE, FIRM_LOGO_SRC } from '@/lib/legal'
 import { HARMS, STEPS, FAQS, ELIGIBILITY, type Variant } from '@/lib/variants'
 
 const PHONE = process.env.NEXT_PUBLIC_PHONE ?? ''
 
+/**
+ * Firm mark for the header's right-hand slot.
+ *
+ * Until AJ sends the approved logo this renders the firm name as a text mark.
+ * That is a real identification rather than a placeholder, so the page is
+ * presentable to the firm for approval exactly as it stands, and we are not
+ * scraping an unapproved logo off their site in the meantime.
+ */
+function FirmMark() {
+  return (
+    <a
+      href={FIRM_WEBSITE}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="shrink-0 transition-opacity hover:opacity-70"
+    >
+      {FIRM_LOGO_SRC ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={FIRM_LOGO_SRC} alt={FIRM_NAME} className="h-7 w-auto" />
+      ) : (
+        <span className="block max-w-[9rem] text-right text-[11px] font-semibold uppercase leading-tight tracking-wide text-navy sm:max-w-none sm:text-xs">
+          {FIRM_NAME}
+        </span>
+      )}
+    </a>
+  )
+}
+
+/**
+ * Header, double-branded per AJ on 2026-09-10.
+ *
+ * The unbranded Social Media Justice mark stays top left so the narrative and
+ * reader flow are unchanged. The firm goes top right. Those two positions plus
+ * the footer are the only places the firm appears; the body stays unbranded.
+ */
 function Nav() {
   return (
     <header className="border-b border-line bg-white">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5 sm:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5 sm:px-8">
         <Logo />
-        {PHONE && (
-          <a
-            href={`tel:${PHONE.replace(/[^0-9+]/g, '')}`}
-            className="text-sm font-semibold text-navy transition-colors hover:text-stone"
-          >
-            {PHONE}
-          </a>
-        )}
+        <div className="flex items-center gap-4">
+          {PHONE && (
+            <a
+              href={`tel:${PHONE.replace(/[^0-9+]/g, '')}`}
+              className="text-sm font-semibold text-navy transition-colors hover:text-stone"
+            >
+              {PHONE}
+            </a>
+          )}
+          <FirmMark />
+        </div>
       </div>
     </header>
   )

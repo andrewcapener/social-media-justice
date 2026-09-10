@@ -20,6 +20,7 @@ import {
   FIRM_LOGO_SRC_LIGHT,
   CLIENT_PRIVACY_POLICY_URL,
   CLIENT_DISCLAIMER_URL,
+  CLIENT_SMS_TERMS_URL,
 } from '@/lib/legal'
 
 export function Footer() {
@@ -114,10 +115,11 @@ export function Footer() {
         </p>
 
         {/*
-          Privacy Policy and Disclaimer point at the client's own counsel-approved
-          pages on socialmediajusticehelp.com, supplied by their team on 2026-09-10.
-          They are the advertiser of record, so their versions are authoritative
-          and ours must not contradict them.
+          These point at the firm's own counsel-approved pages on simmonsfirm.com.
+          They were briefly pointed at socialmediajusticehelp.com, which the
+          client's team supplied on 2026-09-10 and which went down the same day,
+          leaving the only compliance links on a live landing page dead. See
+          lib/legal.ts.
 
           New tab, deliberately. These are read mid-consideration and navigating
           away from a landing page loses the lead.
@@ -152,6 +154,14 @@ export function Footer() {
             className="underline hover:text-white"
           >
             Disclaimer
+          </a>
+          <a
+            href={CLIENT_SMS_TERMS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-white"
+          >
+            SMS Terms
           </a>
         </div>
 

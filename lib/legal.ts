@@ -36,12 +36,26 @@ export const LEGAL_EFFECTIVE_DATE = 'September 10, 2026'
 export const GOVERNING_STATE = '[CONFIRM STATE]'
 
 /**
- * The participating firm's own policies, supplied by their team 2026-09-10.
- * They are the advertiser of record and these are counsel-approved, so ours
- * must not contradict them.
+ * The policies our footer links to.
+ *
+ * Originally socialmediajusticehelp.com, supplied by the client's team on
+ * 2026-09-10. That host went down the same day and stopped answering entirely,
+ * which left the only Privacy Policy and Disclaimer links on a live landing
+ * page pointing at nothing. Meta's ad review checks for a reachable privacy
+ * policy and a dead one is a routine rejection.
+ *
+ * Repointed to the firm's own domain. Simmons Hanly Conroy is the advertiser of
+ * record and the firm we identify in the footer, these are their counsel's
+ * pages on their own infrastructure, and simmonsfirm.com answers in about two
+ * seconds. That is a better link than the campaign microsite was even when the
+ * microsite was healthy.
+ *
+ * SMS terms are theirs too and worth linking given the TCPA consent language
+ * in the footer points at the same firm.
  */
-export const CLIENT_PRIVACY_POLICY_URL = 'https://socialmediajusticehelp.com/privacy-policy'
-export const CLIENT_DISCLAIMER_URL = 'https://socialmediajusticehelp.com/disclaimer'
+export const CLIENT_PRIVACY_POLICY_URL = 'https://simmonsfirm.com/privacy-policy/'
+export const CLIENT_DISCLAIMER_URL = 'https://simmonsfirm.com/disclaimer/'
+export const CLIENT_SMS_TERMS_URL = 'https://simmonsfirm.com/sms-terms/'
 
 /**
  * The participating law firm.

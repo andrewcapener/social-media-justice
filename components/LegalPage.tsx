@@ -12,13 +12,10 @@ import type { LegalBlock } from '@/lib/legalContent'
  */
 export function LegalPage({
   title,
-  source,
   blocks,
   addendum,
 }: {
   title: string
-  /** Where the text came from, shown so the reader can verify it upstream. */
-  source: { label: string; href: string }
   blocks: readonly LegalBlock[]
   addendum?: readonly LegalBlock[]
 }) {
@@ -29,19 +26,12 @@ export function LegalPage({
       </header>
 
       <main className="mx-auto max-w-3xl px-5 py-12 sm:px-8">
-        <h1 className="mb-2 text-3xl font-bold text-[#1A1A2E]">{title}</h1>
-        <p className="mb-10 text-sm text-[#6B7280]">
-          Reproduced from{' '}
-          <a
-            href={source.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#4A6FA5] underline"
-          >
-            {source.label}
-          </a>
-          .
-        </p>
+        {/*
+          No "reproduced from" attribution line. Provenance lives in
+          lib/legalContent.ts where a maintainer needs it; on the page it just
+          drew a reader's eye to the mirroring and offered an exit.
+        */}
+        <h1 className="mb-10 text-3xl font-bold text-[#1A1A2E]">{title}</h1>
 
         <Section blocks={blocks} />
 

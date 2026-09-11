@@ -24,10 +24,6 @@ export default function PrivacyPolicy() {
   return (
     <LegalPage
       title="Privacy Policy"
-      source={{
-        label: 'simmonsfirm.com/privacy-policy',
-        href: 'https://simmonsfirm.com/privacy-policy/',
-      }}
       blocks={FIRM_PRIVACY_POLICY}
       addendum={PRIVACY_ADDENDUM}
     />

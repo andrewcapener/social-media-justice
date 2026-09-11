@@ -19,7 +19,6 @@ export default function Disclaimer() {
   return (
     <LegalPage
       title="Website Disclaimer"
-      source={{ label: 'simmonsfirm.com/disclaimer', href: 'https://simmonsfirm.com/disclaimer/' }}
       blocks={FIRM_DISCLAIMER}
     />
   )

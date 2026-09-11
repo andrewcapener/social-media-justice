@@ -22,7 +22,7 @@ export function LegalPage({
   return (
     <>
       <header className="border-b border-[#E5E7EB] bg-white px-5 py-4 sm:px-8">
-        <FirmMark />
+        <FirmMark linked />
       </header>
 
       <main className="mx-auto max-w-3xl px-5 py-12 sm:px-8">

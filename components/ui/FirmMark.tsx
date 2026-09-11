@@ -17,7 +17,41 @@ import { FIRM_NAME, FIRM_WEBSITE, FIRM_LOGO_SRC } from '@/lib/legal'
  * An identification that renders as plain text is fine. One that renders as a
  * broken image is a compliance problem, not a cosmetic one.
  */
-export function FirmMark({ className = 'h-7 w-auto sm:h-9' }: { className?: string }) {
+export function FirmMark({
+  className = 'h-7 w-auto sm:h-9',
+  /**
+   * Whether the mark links to the firm's site.
+   *
+   * Off by default, and off on the lander. That link was the last remaining
+   * way out of the funnel, sitting at the very top of a conversion page. The
+   * mark identifies the firm either way; it does not have to be a door.
+   *
+   * The mirrored legal pages pass `linked` because a reader who has opened the
+   * privacy policy has already stepped away from the form, and letting them
+   * verify the firm upstream is worth more there than holding them.
+   */
+  linked = false,
+}: {
+  className?: string
+  linked?: boolean
+}) {
+  const mark = FIRM_LOGO_SRC ? (
+    <Image
+      src={FIRM_LOGO_SRC}
+      alt={FIRM_NAME}
+      width={283}
+      height={40}
+      priority
+      className={className}
+    />
+  ) : (
+    <span className="block text-[11px] font-semibold uppercase leading-tight tracking-wide text-navy sm:text-xs">
+      {FIRM_NAME}
+    </span>
+  )
+
+  if (!linked) return <div className="shrink-0">{mark}</div>
+
   return (
     <a
       href={FIRM_WEBSITE}
@@ -26,20 +60,7 @@ export function FirmMark({ className = 'h-7 w-auto sm:h-9' }: { className?: stri
       aria-label={FIRM_NAME}
       className="shrink-0 transition-opacity hover:opacity-70"
     >
-      {FIRM_LOGO_SRC ? (
-        <Image
-          src={FIRM_LOGO_SRC}
-          alt={FIRM_NAME}
-          width={283}
-          height={40}
-          priority
-          className={className}
-        />
-      ) : (
-        <span className="block text-[11px] font-semibold uppercase leading-tight tracking-wide text-navy sm:text-xs">
-          {FIRM_NAME}
-        </span>
-      )}
+      {mark}
     </a>
   )
 }

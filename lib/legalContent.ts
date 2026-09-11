@@ -23,13 +23,10 @@
  *    PRIVACY_ADDENDUM below corrects it for this domain. The addendum renders
  *    visually separated and labelled as ours, not theirs.
  *
- * 2. The contact email in their privacy policy is obfuscated by their host's
- *    bot protection, so it arrives in the page source as a literal placeholder
- *    rather than an address. Rendering that verbatim would put a broken token
- *    on a live compliance page, and inventing an address would be worse. The
- *    two sentences that carried it now give their published phone number and
- *    point to their site for the current email. This is the ONLY edit made to
- *    their text anywhere, and it should be confirmed at approval.
+ * 2. Their contact email arrives from their host's bot protection as an encoded
+ *    placeholder rather than plain text. It decodes to information@simmonsfirm.com,
+ *    which is what their own page shows a reader, so both sentences carry it
+ *    verbatim. Nothing in their text is altered.
  */
 
 export type LegalBlock = readonly [kind: 'h' | 'p' | 'li', text: string]
@@ -90,7 +87,7 @@ export const FIRM_PRIVACY_POLICY: readonly LegalBlock[] = [
   ['p', 'We use Cookies and Other Tracking Technologies to collect information about how you use the Sites and Services.  Many Internet browsers and mobile devices allow you to block the transmission of information, such as your IP address or location information, or to block the installation of cookies. You may choose to enable these options. However, enabling these options may prevent you from using many of the core features and functions available on our Sites and Services.'],
   ['p', 'Information Security'],
   ['p', 'The Simmons Firm has implemented an information security program that contains administrative, technical and physical controls that are designed to reasonably safeguard information that can individually identify you.'],
-  ['p', 'You can also ask us to update the information we have collected about you by contacting us at 844-888-4477 or through the contact details published at simmonsfirm.com.'],
+  ['p', 'You can also ask us to update the information we have collected about you by contacting us at 844-888-4477 or information@simmonsfirm.com.'],
   ['p', 'Business Transfers or Changes'],
   ['p', 'We reserve the right to disclose and transfer all information related to the Sites and Services, including personal information:'],
   ['li', 'to a subsequent owner, co-owner or operator of one or more of the Sites; or'],
@@ -100,7 +97,7 @@ export const FIRM_PRIVACY_POLICY: readonly LegalBlock[] = [
   ['p', 'California Privacy Rights'],
   ['p', 'Pursuant to California Civil Code Section 1798.83(c)(2), the Simmons Firm does not share your personal information with third parties for those third parties’ direct marketing use.'],
   ['p', 'Contact Us'],
-  ['p', 'Please Contact Us if you have any questions or comments about our privacy practices or this Privacy Policy. You can reach us by calling 844-888-4477 or through the contact details published at simmonsfirm.com.'],
+  ['p', 'Please Contact Us if you have any questions or comments about our privacy practices or this Privacy Policy. You can reach us at information@simmonsfirm.com or by calling 844-888-4477.'],
 ] as const
 
 /**

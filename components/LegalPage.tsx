@@ -68,6 +68,28 @@ export function LegalPage({
   )
 }
 
+/**
+ * Turn bare email addresses into mailto links.
+ *
+ * The firm's policy gives a contact address for exercising data rights, and on
+ * their own site it is clickable. A right you have to retype by hand on a phone
+ * is a right with friction in front of it, so it stays clickable here. The text
+ * itself is untouched; only the markup around it changes.
+ */
+function linkify(text: string): React.ReactNode {
+  const parts = text.split(/([\w.+-]+@[\w-]+\.[\w.]+)/g)
+  if (parts.length === 1) return text
+  return parts.map((part, i) =>
+    /^[\w.+-]+@[\w-]+\.[\w.]+$/.test(part) ? (
+      <a key={i} href={`mailto:${part}`} className="text-[#4A6FA5] underline">
+        {part}
+      </a>
+    ) : (
+      part
+    )
+  )
+}
+
 /** Renders the block list, grouping consecutive list items into one <ul>. */
 function Section({ blocks }: { blocks: readonly LegalBlock[] }) {
   const out: React.ReactNode[] = []
@@ -100,7 +122,7 @@ function Section({ blocks }: { blocks: readonly LegalBlock[] }) {
     } else {
       out.push(
         <p key={i} className="mb-4 leading-relaxed text-[#374151]">
-          {text}
+          {linkify(text)}
         </p>
       )
     }

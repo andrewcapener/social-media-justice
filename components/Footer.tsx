@@ -18,9 +18,8 @@ import {
   FIRM_ADDRESS_LINES,
   FIRM_LICENSURE,
   FIRM_LOGO_SRC_LIGHT,
-  CLIENT_PRIVACY_POLICY_URL,
-  CLIENT_DISCLAIMER_URL,
-  CLIENT_SMS_TERMS_URL,
+  PRIVACY_POLICY_PATH,
+  DISCLAIMER_PATH,
 } from '@/lib/legal'
 
 export function Footer() {
@@ -115,53 +114,24 @@ export function Footer() {
         </p>
 
         {/*
-          These point at the firm's own counsel-approved pages on simmonsfirm.com.
-          They were briefly pointed at socialmediajusticehelp.com, which the
-          client's team supplied on 2026-09-10 and which went down the same day,
-          leaving the only compliance links on a live landing page dead. See
-          lib/legal.ts.
+          Internal links, same tab, no target="_blank". The firm's privacy
+          policy and disclaimer are mirrored onto this domain so a reader
+          checking them never leaves the page. Both external versions we tried
+          first were worse: socialmediajusticehelp.com went down the day it was
+          supplied, and simmonsfirm.com still sends the reader off the funnel.
 
-          New tab, deliberately. These are read mid-consideration and navigating
-          away from a landing page loses the lead.
-
-          The local /privacy-policy and /terms-of-service links were removed on
-          2026-09-10. Both pages were copied wholesale from the Claim Anchor
-          build and still name Clifford Press LLC as the owner, the contact and
-          the party taking TCPA consent. Shipping a different client's legal
-          entity on this campaign is worse than having no link at all, so they
-          were unlinked. Both have since been rewritten, but they stay unlinked
-          until the operator question and the governing-law state are settled.
-
-          Open question for the client's counsel: their privacy policy covers
-          their site, not the tracking that runs on THIS domain (Meta pixel and
-          CAPI, GA4, TrustedForm, the Growth Channel pixel). Someone has to
-          decide whether that needs its own disclosure. Do not paper over it by
-          restoring the old pages.
+          /privacy-policy now serves the firm's policy plus our addendum
+          covering the ad tech on this domain, which their policy does not
+          describe and in one place contradicts. /terms-of-service stays
+          unlinked: it is the Milkneck operator document and still needs the
+          governing-law state before anyone should see it.
         */}
         <div className="flex flex-wrap gap-x-5 gap-y-2 pt-2">
-          <a
-            href={CLIENT_PRIVACY_POLICY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-white"
-          >
+          <a href={PRIVACY_POLICY_PATH} className="underline hover:text-white">
             Privacy Policy
           </a>
-          <a
-            href={CLIENT_DISCLAIMER_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-white"
-          >
+          <a href={DISCLAIMER_PATH} className="underline hover:text-white">
             Disclaimer
-          </a>
-          <a
-            href={CLIENT_SMS_TERMS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-white"
-          >
-            SMS Terms
           </a>
         </div>
 

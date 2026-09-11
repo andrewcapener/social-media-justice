@@ -36,26 +36,19 @@ export const LEGAL_EFFECTIVE_DATE = 'September 10, 2026'
 export const GOVERNING_STATE = '[CONFIRM STATE]'
 
 /**
- * The policies our footer links to.
+ * The compliance pages in the footer.
  *
- * Originally socialmediajusticehelp.com, supplied by the client's team on
- * 2026-09-10. That host went down the same day and stopped answering entirely,
- * which left the only Privacy Policy and Disclaimer links on a live landing
- * page pointing at nothing. Meta's ad review checks for a reachable privacy
- * policy and a dead one is a routine rejection.
+ * Internal, not outbound. Per Andrew on 2026-09-11 the firm's privacy policy
+ * and disclaimer are mirrored onto this domain rather than linked to, so a
+ * reader checking them never leaves the landing page. See lib/legalContent.ts
+ * for the text and the one correction we make to it.
  *
- * Repointed to the firm's own domain. Simmons Hanly Conroy is the advertiser of
- * record and the firm we identify in the footer, these are their counsel's
- * pages on their own infrastructure, and simmonsfirm.com answers in about two
- * seconds. That is a better link than the campaign microsite was even when the
- * microsite was healthy.
- *
- * SMS terms are theirs too and worth linking given the TCPA consent language
- * in the footer points at the same firm.
+ * They were briefly external, first to socialmediajusticehelp.com (which went
+ * down the same day the client's team supplied it) and then to simmonsfirm.com.
+ * Both are outbound links off a landing page, which is the thing to avoid.
  */
-export const CLIENT_PRIVACY_POLICY_URL = 'https://simmonsfirm.com/privacy-policy/'
-export const CLIENT_DISCLAIMER_URL = 'https://simmonsfirm.com/disclaimer/'
-export const CLIENT_SMS_TERMS_URL = 'https://simmonsfirm.com/sms-terms/'
+export const PRIVACY_POLICY_PATH = '/privacy-policy'
+export const DISCLAIMER_PATH = '/disclaimer'
 
 /**
  * The participating law firm.

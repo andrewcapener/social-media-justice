@@ -32,6 +32,9 @@ export const LEGAL_EFFECTIVE_DATE = 'September 10, 2026'
  * other project along with everything else, and there is no reason to think
  * that is right for Milkneck. This renders visibly broken on the page so it
  * cannot ship unnoticed. Replace with the state Milkneck is organised in.
+ *
+ * /terms-of-service is NOT linked from the footer while this is unfilled, so
+ * nothing broken is reachable. Do not link it until this is a real state.
  */
 export const GOVERNING_STATE = '[CONFIRM STATE]'
 
@@ -95,9 +98,12 @@ export const FIRM_LOGO_SRC_LIGHT: string | null = '/brand/firm/simmons-white.svg
 /**
  * Draft mode.
  *
- * AJ is presenting this to the firm as a draft lander pending approval and has
- * asked that zero traffic reach it until they sign off. While this is true the
- * pages emit `noindex, nofollow` so a crawler cannot put a Simmons-branded page
- * nobody approved into a search index. Flip to false at launch.
+ * AJ presented this to Simmons as a draft lander pending approval and asked
+ * that zero traffic reach it until they signed off. While this was true every
+ * page emitted `noindex, nofollow`, so a crawler could not put a
+ * Simmons-branded page nobody had approved into a search index.
+ *
+ * Simmons approved on 2026-09-24. False from that date, which removes the
+ * robots directive site-wide. Nothing else keys off this flag.
  */
-export const AWAITING_FIRM_APPROVAL = true
+export const AWAITING_FIRM_APPROVAL = false

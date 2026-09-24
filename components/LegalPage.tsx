@@ -1,9 +1,10 @@
 import { FirmMark } from '@/components/ui/FirmMark'
 import { Footer } from '@/components/Footer'
 import type { LegalBlock } from '@/lib/legalContent'
+import { FIRM_NAME, FIRM_POLICY_URL, PRIVACY_EMAIL } from '@/lib/legal'
 
 /**
- * Shared shell for the mirrored legal pages.
+ * Shared shell for the legal pages.
  *
  * These live on our domain rather than being linked out, so the reader never
  * leaves the landing page mid-consideration. That makes the back link matter:
@@ -13,11 +14,9 @@ import type { LegalBlock } from '@/lib/legalContent'
 export function LegalPage({
   title,
   blocks,
-  addendum,
 }: {
   title: string
   blocks: readonly LegalBlock[]
-  addendum?: readonly LegalBlock[]
 }) {
   return (
     <>
@@ -26,25 +25,9 @@ export function LegalPage({
       </header>
 
       <main className="mx-auto max-w-3xl px-5 py-12 sm:px-8">
-        {/*
-          No "reproduced from" attribution line. Provenance lives in
-          lib/legalContent.ts where a maintainer needs it; on the page it just
-          drew a reader's eye to the mirroring and offered an exit.
-        */}
         <h1 className="mb-10 text-3xl font-bold text-[#1A1A2E]">{title}</h1>
 
         <Section blocks={blocks} />
-
-        {addendum && (
-          /*
-            Visually separated and on a tinted ground so it cannot be mistaken
-            for the firm's text. It is ours, it says so, and it corrects the
-            policy above for this domain.
-          */
-          <div className="mt-12 rounded-xl border border-[#E5E7EB] bg-[#F8F9FC] p-6 sm:p-8">
-            <Section blocks={addendum} />
-          </div>
-        )}
 
         <p className="mt-12 border-t border-[#E5E7EB] pt-6 text-sm">
           <a href="/parents" className="text-[#4A6FA5] underline">
@@ -59,25 +42,59 @@ export function LegalPage({
 }
 
 /**
- * Turn bare email addresses into mailto links.
+ * Placeholder substitution.
  *
- * The firm's policy gives a contact address for exercising data rights, and on
- * their own site it is clickable. A right you have to retype by hand on a phone
- * is a right with friction in front of it, so it stays clickable here. The text
- * itself is untouched; only the markup around it changes.
+ * The copy in lib/legalContent.ts never writes the firm's name out. It says
+ * {FIRM} and this fills it in from lib/legal.ts, so swapping firms stays a
+ * one-file change. Three firms in two weeks have made that worth it, and a
+ * name baked into prose is exactly how an unrelated company's legal entity
+ * ended up on a live page once already.
+ */
+function substitute(text: string): string {
+  return text
+    .replaceAll('{FIRM}', FIRM_NAME)
+    .replaceAll('{POLICY}', FIRM_POLICY_URL)
+    .replaceAll('{PRIVACY_EMAIL}', PRIVACY_EMAIL)
+}
+
+const EMAIL = /[\w.+-]+@[\w-]+\.[\w.]+/
+const URL_OR_EMAIL = /(https?:\/\/[^\s)]+[^\s.,)]|[\w.+-]+@[\w-]+\.[\w.]+)/g
+
+/**
+ * Make contact addresses and the firm's policy URL clickable.
+ *
+ * A data right you have to retype by hand on a phone is a right with friction
+ * in front of it. The firm's policy link is the one deliberate outbound link on
+ * the site, present because they asked for it, so it opens in a new tab and the
+ * reader keeps their place.
  */
 function linkify(text: string): React.ReactNode {
-  const parts = text.split(/([\w.+-]+@[\w-]+\.[\w.]+)/g)
-  if (parts.length === 1) return text
-  return parts.map((part, i) =>
-    /^[\w.+-]+@[\w-]+\.[\w.]+$/.test(part) ? (
-      <a key={i} href={`mailto:${part}`} className="text-[#4A6FA5] underline">
-        {part}
-      </a>
-    ) : (
-      part
-    )
-  )
+  const parts = substitute(text).split(URL_OR_EMAIL)
+  if (parts.length === 1) return parts[0]
+
+  return parts.map((part, i) => {
+    if (EMAIL.test(part) && !part.startsWith('http')) {
+      return (
+        <a key={i} href={`mailto:${part}`} className="text-[#4A6FA5] underline">
+          {part}
+        </a>
+      )
+    }
+    if (part.startsWith('http')) {
+      return (
+        <a
+          key={i}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#4A6FA5] underline"
+        >
+          {part.replace(/^https?:\/\//, '')}
+        </a>
+      )
+    }
+    return part
+  })
 }
 
 /** Renders the block list, grouping consecutive list items into one <ul>. */
@@ -90,7 +107,7 @@ function Section({ blocks }: { blocks: readonly LegalBlock[] }) {
     out.push(
       <ul key={`ul-${key}`} className="mb-4 list-disc space-y-1 pl-5 text-[#374151]">
         {list.map((t, i) => (
-          <li key={i}>{t}</li>
+          <li key={i}>{substitute(t)}</li>
         ))}
       </ul>
     )
@@ -106,7 +123,7 @@ function Section({ blocks }: { blocks: readonly LegalBlock[] }) {
     if (kind === 'h') {
       out.push(
         <h2 key={i} className="mb-3 mt-8 text-xl font-bold text-[#1A1A2E] first:mt-0">
-          {text}
+          {substitute(text)}
         </h2>
       )
     } else {

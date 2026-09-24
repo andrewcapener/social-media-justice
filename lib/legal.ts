@@ -60,20 +60,13 @@ export const DISCLAIMER_PATH = '/disclaimer'
  * only; the body narrative stays unbranded, which is why a swap costs one file
  * and not a rewrite.
  *
- * ⚠️ ADDRESS IS CONTESTED. Three are in circulation and they are not the same
- * place:
- *
- *   417 Main St. #129, Little Rock          - what the firm emailed us directly
- *   2226 Cottondale Lane, Suite 210         - what yourattorney.com/disclaimers
- *                                             designates as the office
- *                                             responsible for their website,
- *                                             naming attorney Anthony Johnson
- *   610 President Clinton Avenue, Suite 200 - what their own homepage footer shows
- *
- * We use the one they sent us, since it is a direct instruction to us about
- * this page. But an attorney advertising block exists to name the office
- * answerable for the ad, and their own compliance page designates a different
- * one. Confirm with them before this is treated as settled.
+ * Address confirmed by Andrew on 2026-09-24 as the one the firm emailed us.
+ * Worth knowing that two others are in circulation and are not the same place:
+ * their own disclaimers page designates 2226 Cottondale Lane, Suite 210 as the
+ * office responsible for their website, naming attorney Anthony Johnson, and
+ * their homepage footer shows 610 President Clinton Avenue, Suite 200. An
+ * attorney advertising block exists to name the office answerable for the ad,
+ * so if their counsel ever queries this, that is why.
  *
  * FIRM_LICENSURE is quoted from their own disclaimers page. It matters more
  * here than the equivalent Simmons line did: they are licensed in two states
@@ -95,30 +88,28 @@ export const FIRM_WEBSITE = 'https://yourattorney.com'
  * The firm's own published website policy.
  *
  * They asked for this specifically: our pages carry a line pointing readers to
- * it. The only outbound link on the site, and it is there at the firm's
- * instruction rather than by default.
+ * it, and the state-specific advertising notices they publish there form part
+ * of this advertising. The only outbound link on the site, and it is there at
+ * the firm's instruction rather than by default.
  */
 export const FIRM_POLICY_URL = 'https://yourattorney.com/disclaimers'
 
 /**
  * Firm logo, both tones.
  *
- * Null until Johnson's assets arrive. The header and footer fall back to the
- * firm name set as a text mark, which is a real identification in its own
- * right. That fallback is the entire reason this is safe to ship mid-swap:
- * the alternative would have been the previous firm's logo sitting on a live
- * page under the new firm's name.
+ * Two files, not one. The header sits on white and the footer on navy, and this
+ * mark is navy and red: on the footer the navy half would vanish. An invisible
+ * logo where an attorney advertising identification belongs is a compliance
+ * problem, not a cosmetic one.
  *
- * The old Simmons files under /public/brand/firm/ are now unreferenced. Delete
- * them once Johnson's are in, so nobody wires the wrong mark back by accident.
+ * The header uses the webp, which is a fifth the size of the equivalent png for
+ * the same mark, on the one image that loads above the fold on every page.
  *
- * Two files when they arrive, not one. The header sits on white and the footer
- * on navy, and a single-tone mark disappears on one of them. An invisible logo
- * on an attorney advertising disclosure is a compliance problem, not a
- * cosmetic one.
+ * Both fall back to the firm name as a text mark if the file fails to load,
+ * which is what carried the page through the swap before these arrived.
  */
-export const FIRM_LOGO_SRC: string | null = null
-export const FIRM_LOGO_SRC_LIGHT: string | null = null
+export const FIRM_LOGO_SRC: string | null = '/brand/firm/johnson-header-v2.webp'
+export const FIRM_LOGO_SRC_LIGHT: string | null = '/brand/firm/johnson-footer-v2.png'
 
 /**
  * Draft mode.

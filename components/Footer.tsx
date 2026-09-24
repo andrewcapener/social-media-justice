@@ -1,21 +1,23 @@
 /**
  * Site-wide footer.
  *
- * The disclaimers here are compliance surface, not decoration, attorney
+ * The disclaimers here are compliance surface, not decoration: attorney
  * advertising notice, firm identification, no-attorney-client-relationship,
  * no-guarantee-of-recovery, TCPA consent language, and the medical-advice
  * disclaimer. Meta also requires a reachable privacy policy for lead-gen ad
- * accounts. Do not trim these without running the change past the client's
+ * accounts. Do not trim these without running the change past the firm's
  * counsel.
  *
  * Per AJ on 2026-09-10, this footer is the most important surface on the page
  * and the language and address have to be exactly right. The firm appears here
- * and in the header only; the body narrative stays unbranded.
+ * and in the header only; the body narrative stays unbranded, which is why
+ * changing firms costs one file rather than a rewrite.
  */
 import Image from 'next/image'
 import {
   FIRM_NAME,
   FIRM_ADDRESS_LINES,
+  FIRM_PHONE,
   FIRM_LICENSURE,
   FIRM_LOGO_SRC_LIGHT,
   PRIVACY_POLICY_PATH,
@@ -35,17 +37,20 @@ export function Footer() {
           domain and the copyright line below.
 
           Logo leads, then the ATTORNEY ADVERTISING label, then the firm
-          identification. The whole group still sits at the top of the footer
-          rather than the bottom, because a disclosure nobody scrolls to is not
-          a disclosure.
+          identification. The whole group sits at the top of the footer rather
+          than the bottom, because a disclosure nobody scrolls to is not a
+          disclosure.
+
+          The light variant of the mark: this one is navy and red, and the navy
+          half would vanish on this ground.
         */}
         {FIRM_LOGO_SRC_LIGHT && (
           <Image
             src={FIRM_LOGO_SRC_LIGHT}
             alt={FIRM_NAME}
-            width={319}
-            height={47}
-            className="h-7 w-auto"
+            width={1256}
+            height={300}
+            className="h-8 w-auto"
           />
         )}
 
@@ -67,6 +72,7 @@ export function Footer() {
           {FIRM_ADDRESS_LINES.map((line) => (
             <p key={line}>{line}</p>
           ))}
+          <p>{FIRM_PHONE}</p>
         </div>
 
         <p>
@@ -86,9 +92,9 @@ export function Footer() {
 
         <p>
           {/*
-            Verbatim from the firm's own footer. We show a San Francisco address
-            against national traffic, so the jurisdictional limit has to travel
-            with the address rather than be implied by it.
+            Quoted from the firm's own disclaimers page. They are admitted in
+            two states and this campaign runs nationally, so the association
+            language has to travel with the claim rather than be implied by it.
           */}
           {FIRM_LICENSURE}
         </p>
@@ -114,17 +120,19 @@ export function Footer() {
         </p>
 
         {/*
-          Internal links, same tab, no target="_blank". The firm's privacy
-          policy and disclaimer are mirrored onto this domain so a reader
-          checking them never leaves the page. Both external versions we tried
-          first were worse: socialmediajusticehelp.com went down the day it was
-          supplied, and simmonsfirm.com still sends the reader off the funnel.
+          Internal links, same tab, no target="_blank", so a reader checking
+          them never leaves the page. Two external hosts were tried first and
+          both were worse: socialmediajusticehelp.com went down the day it was
+          supplied, and linking the firm's own domain sends the reader off the
+          funnel.
 
-          /privacy-policy now serves the firm's policy plus our addendum
-          covering the ad tech on this domain, which their policy does not
-          describe and in one place contradicts. /terms-of-service stays
-          unlinked: it is the Milkneck operator document and still needs the
-          governing-law state before anyone should see it.
+          Both pages are our documents naming the firm, not copies of the firm's.
+          The firm's published policy is linked from the bottom of each, which is
+          what they asked for, and their state-specific advertising notices live
+          there.
+
+          /terms-of-service stays unlinked: it is the Milkneck operator document
+          and still needs the governing-law state before anyone should see it.
         */}
         <div className="flex flex-wrap gap-x-5 gap-y-2 pt-2">
           <a href={PRIVACY_POLICY_PATH} className="underline hover:text-white">

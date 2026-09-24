@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { LegalPage } from '@/components/LegalPage'
-import { FIRM_PRIVACY_POLICY, PRIVACY_ADDENDUM } from '@/lib/legalContent'
+import { FIRM_PRIVACY_POLICY } from '@/lib/legalContent'
 import { FIRM_NAME } from '@/lib/legal'
 
 export const metadata: Metadata = {
@@ -8,24 +8,19 @@ export const metadata: Metadata = {
 }
 
 /**
- * The firm's privacy policy, hosted here rather than linked out so the reader
- * does not leave the landing page to find it.
+ * Privacy policy for this landing page, hosted here rather than linked out so
+ * the reader does not leave to find it.
  *
- * Replaces an earlier version of this page that was written with Milkneck as
- * the site operator. The client wants parity with the firm's own LP, so the
- * firm's policy is what a visitor should see.
+ * This is our policy, not the firm's. It describes the advertising and
+ * analytics technology that runs on this page, which the firm's own policy does
+ * not cover and is not theirs to disclose. The firm's published policy is
+ * linked at the bottom, which is what they asked for.
  *
- * The addendum is ours and is the reason this page is not a straight copy.
- * Their policy states that their Sites do not track activity across third
- * party websites over time. True of simmonsfirm.com, false of this page, which
- * runs Meta and programmatic retargeting. See lib/legalContent.ts.
+ * Previously this mirrored Simmons Hanly Conroy's policy verbatim with an
+ * addendum correcting the one claim in it that was false here. The firm changed
+ * on 2026-09-24 and mirroring a third party's document was always the more
+ * fragile shape, so the copy is ours now and the addendum is gone with it.
  */
 export default function PrivacyPolicy() {
-  return (
-    <LegalPage
-      title="Privacy Policy"
-      blocks={FIRM_PRIVACY_POLICY}
-      addendum={PRIVACY_ADDENDUM}
-    />
-  )
+  return <LegalPage title="Privacy Policy" blocks={FIRM_PRIVACY_POLICY} />
 }

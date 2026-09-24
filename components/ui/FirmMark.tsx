@@ -10,15 +10,25 @@ import { FIRM_NAME, FIRM_WEBSITE, FIRM_LOGO_SRC } from '@/lib/legal'
  * on the lander and on the post-submission pages.
  *
  * The colour variant, because every header on this site sits on white. The
- * navy footer uses FIRM_LOGO_SRC_LIGHT instead; their colour mark disappears
- * on a dark ground.
+ * navy footer uses FIRM_LOGO_SRC_LIGHT instead; a navy mark disappears on a
+ * dark ground.
  *
  * Falls back to the firm name set as a text mark if the asset is ever missing.
  * An identification that renders as plain text is fine. One that renders as a
- * broken image is a compliance problem, not a cosmetic one.
+ * broken image is a compliance problem, not a cosmetic one. That fallback
+ * carried the page through the Simmons to Johnson swap before the new assets
+ * arrived.
  */
 export function FirmMark({
-  className = 'h-7 w-auto sm:h-9',
+  /**
+   * Height only, width auto, so the browser uses the file's real aspect ratio
+   * and the mark cannot be stretched by a wrong dimension prop.
+   *
+   * Shorter than the previous firm's at the same nominal size: this is a
+   * stacked two-line lockup rather than a single-line wordmark, so it reads
+   * heavier for the same height.
+   */
+  className = 'h-8 w-auto sm:h-10',
   /**
    * Whether the mark links to the firm's site.
    *
@@ -26,9 +36,9 @@ export function FirmMark({
    * way out of the funnel, sitting at the very top of a conversion page. The
    * mark identifies the firm either way; it does not have to be a door.
    *
-   * The mirrored legal pages pass `linked` because a reader who has opened the
-   * privacy policy has already stepped away from the form, and letting them
-   * verify the firm upstream is worth more there than holding them.
+   * The legal pages pass `linked` because a reader who has opened the privacy
+   * policy has already stepped away from the form, and letting them verify the
+   * firm upstream is worth more there than holding them.
    */
   linked = false,
 }: {
@@ -39,8 +49,11 @@ export function FirmMark({
     <Image
       src={FIRM_LOGO_SRC}
       alt={FIRM_NAME}
-      width={283}
-      height={40}
+      // Approximate intrinsic size. These reserve layout space; the rendered
+      // size comes from the className above, so a small error costs a little
+      // layout shift rather than a distorted logo.
+      width={1200}
+      height={260}
       priority
       className={className}
     />

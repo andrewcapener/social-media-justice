@@ -29,6 +29,7 @@ export type LegalBlock = readonly [kind: 'h' | 'p' | 'li', text: string]
 export const FIRM_DISCLAIMER: readonly LegalBlock[] = [
   ['h', 'Attorney Advertising'],
   ['p', 'This website is attorney advertising for {FIRM}. It is not a law firm, it does not provide legal advice, and nothing on it is a substitute for advice from a qualified attorney about your own situation.'],
+  ['p', 'No representation is made promising or guaranteeing a particular outcome or result. Prior results do not guarantee a similar outcome.'],
 
   ['h', 'No Attorney-Client Relationship'],
   ['p', 'Using this website, reading anything on it, or submitting the intake form does not create an attorney-client relationship with {FIRM}, with any attorney, or with the operator of this site. That relationship is created only by a signed written agreement, and only if the firm chooses to offer one.'],
@@ -42,6 +43,12 @@ export const FIRM_DISCLAIMER: readonly LegalBlock[] = [
 
   ['h', 'Where the Firm Practises'],
   ['p', 'This advertising is seen across the United States. The participating firm is not licensed in every state. The licensure statement in the footer of this page sets out where its lawyers are admitted and how matters outside those states are handled.'],
+
+  ['h', 'No Certification of Specialty'],
+  ['p', 'No attorney at the firm is certified as a specialist in any field by any state commission on continuing legal education and specialization, except where a particular attorney is separately identified as holding such a certification. Certification is not available in every state and the absence of it does not indicate a lack of experience.'],
+
+  ['h', 'State-Specific Notices'],
+  ['p', 'Several states require their own wording in attorney advertising, and the firm publishes those notices, including for Alabama, Arizona, Colorado, Florida, Iowa, Kentucky, Mississippi, Missouri, Nevada, New Jersey, New Mexico, New York, Oregon, Tennessee, Texas and Wyoming. If you are in one of those states, the notice that applies to you is published at {POLICY} and forms part of this advertising.'],
 
   ['h', 'Not Medical Advice'],
   ['p', 'Health information on this site is general and educational. It is not medical advice, it is not a diagnosis, and it is not a substitute for care from a qualified professional. If you or someone you know is in crisis, call or text 988 in the United States.'],

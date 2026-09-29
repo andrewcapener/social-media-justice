@@ -50,6 +50,20 @@ interface Result {
   event: EventName | null
   status: 'sent' | 'rejected' | 'invalid'
   matched: boolean
+  /**
+   * Which ad produced the original lead.
+   *
+   * Returned so a signed case can be costed against the audience that produced
+   * it. Meta cannot do this: a case signs well past the 7-day click window, so
+   * it attributes to nothing there however good the match data is. This join is
+   * exact and has no window.
+   */
+  attribution?: {
+    adSet?: string
+    campaign?: string
+    variant?: string
+    landingPath?: string
+  }
   event_time_clamped?: boolean
   events_received?: number
   detail?: string
@@ -130,6 +144,16 @@ async function send(item: Item): Promise<Result> {
     event,
     status: 'sent',
     matched: Boolean(parked),
+    ...(parked?.attribution
+      ? {
+          attribution: {
+            adSet: parked.attribution.adSet,
+            campaign: parked.attribution.campaign,
+            variant: parked.attribution.variant,
+            landingPath: parked.attribution.landingPath,
+          },
+        }
+      : {}),
     ...(clamped ? { event_time_clamped: true } : {}),
   }
 

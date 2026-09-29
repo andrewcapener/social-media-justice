@@ -162,6 +162,12 @@ export async function trackServer(
     firstName?: string
     lastName?: string
     state?: string
+    /** UTMs, so the server can park which ad produced this lead. */
+    utmSource?: string
+    utmMedium?: string
+    utmCampaign?: string
+    utmContent?: string
+    utmTerm?: string
   } = {}
 ): Promise<void> {
   try {

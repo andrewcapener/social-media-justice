@@ -27,6 +27,11 @@ interface CapiBody {
   state?: string
   campaign?: string
   variant?: string
+  utmSource?: string
+  utmMedium?: string
+  utmCampaign?: string
+  utmContent?: string
+  utmTerm?: string
 }
 
 /** Meta requires lowercase, trimmed, SHA-256 hex. */
@@ -132,6 +137,24 @@ export async function POST(request: NextRequest) {
       eventSourceUrl: body.eventSourceUrl,
       campaign: body.campaign,
       variant: body.variant,
+      // utm_term carries {{adset.name}} from the ad URL, so this is the field
+      // that turns a signed case back into the audience that produced it.
+      attribution: {
+        campaign: body.campaign,
+        variant: body.variant,
+        utmSource: body.utmSource,
+        utmMedium: body.utmMedium,
+        utmCampaign: body.utmCampaign,
+        utmContent: body.utmContent,
+        adSet: body.utmTerm,
+        landingPath: (() => {
+          try {
+            return body.eventSourceUrl ? new URL(body.eventSourceUrl).pathname : undefined
+          } catch {
+            return undefined
+          }
+        })(),
+      },
     })
   }
 

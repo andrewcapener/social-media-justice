@@ -42,11 +42,35 @@ export interface MatchData {
   client_user_agent?: string
 }
 
+/**
+ * Which ad produced this lead.
+ *
+ * Parked because a signed case is the only number that should drive budget, and
+ * Meta cannot give it to us. A case signs days or weeks after the click, long
+ * past Meta's 7-day attribution window, so it attributes to nothing no matter
+ * how good the match data is. Holding the ad set against the entry_id means the
+ * join is exact and has no window at all.
+ *
+ * adSet comes from utm_term, which the ad URLs populate with {{adset.name}}.
+ */
+export interface LeadAttribution {
+  campaign?: string
+  variant?: string
+  utmSource?: string
+  utmMedium?: string
+  utmCampaign?: string
+  utmContent?: string
+  /** Ad set name, from utm_term. The field that answers "which audience". */
+  adSet?: string
+  landingPath?: string
+}
+
 export interface ParkedLead {
   userData: MatchData
   eventSourceUrl?: string
   campaign?: string
   variant?: string
+  attribution?: LeadAttribution
   /** Unix seconds. Lets the caller see how stale the attribution is. */
   parkedAt: number
 }

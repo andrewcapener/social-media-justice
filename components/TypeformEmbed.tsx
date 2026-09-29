@@ -149,7 +149,18 @@ export function TypeformEmbed({
       // with the submission into the client's n8n intake, so if their system
       // also reports this lead to Meta, both reports carry the same id and
       // Meta dedupes instead of double counting.
-      void trackConversion('Lead', { campaign, variant, eventId: entryId })
+      void trackConversion('Lead', {
+        campaign,
+        variant,
+        eventId: entryId,
+        // Parked server-side against entry_id. utm_term is {{adset.name}},
+        // which is what lets a signed case be traced back to its audience.
+        utmSource: utm.utmSource,
+        utmMedium: utm.utmMedium,
+        utmCampaign: utm.utmCampaign,
+        utmContent: utm.utmContent,
+        utmTerm: utm.utmTerm,
+      })
       fireGrowthChannelConversion()
     }
 

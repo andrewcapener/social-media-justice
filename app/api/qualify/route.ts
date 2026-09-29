@@ -63,6 +63,8 @@ interface Result {
     campaign?: string
     variant?: string
     landingPath?: string
+    /** Original source, which may be a different channel from adSet above. */
+    firstTouch?: Record<string, unknown>
   }
   event_time_clamped?: boolean
   events_received?: number
@@ -151,6 +153,7 @@ async function send(item: Item): Promise<Result> {
             campaign: parked.attribution.campaign,
             variant: parked.attribution.variant,
             landingPath: parked.attribution.landingPath,
+            firstTouch: parked.attribution.firstTouch,
           },
         }
       : {}),

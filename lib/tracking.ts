@@ -168,6 +168,8 @@ export async function trackServer(
     utmCampaign?: string
     utmContent?: string
     utmTerm?: string
+    /** Where this person originally came from, see lib/firstTouch.ts. */
+    firstTouch?: Record<string, unknown>
   } = {}
 ): Promise<void> {
   try {

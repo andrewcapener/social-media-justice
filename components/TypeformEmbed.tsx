@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { readUtm, readDeliveryKeys, trackConversion, trackClient } from '@/lib/tracking'
+import { captureFirstTouch, firstTouchSummary } from '@/lib/firstTouch'
 import { fireGrowthChannelConversion } from '@/lib/growth-channel'
 
 /**
@@ -116,6 +117,10 @@ export function TypeformEmbed({
 
     const entryId = makeEntryId()
     const utm = readUtm()
+    // Records this visit as the first touch only if we have never seen this
+    // device. A retargeting return visit must not overwrite the channel that
+    // originally sourced the person.
+    const firstTouch = captureFirstTouch()
 
     const hidden: Record<string, string> = {
       // The client's required fields, first and unmodified. `domain` was added
@@ -153,6 +158,10 @@ export function TypeformEmbed({
         campaign,
         variant,
         eventId: entryId,
+        // Both ends of the journey. utm* below is the session that converted;
+        // firstTouch is where they originally came from, which is the only way
+        // to see a case Growth Channel sourced and Meta retargeting closed.
+        firstTouch: firstTouchSummary(firstTouch),
         // Parked server-side against entry_id. utm_term is {{adset.name}},
         // which is what lets a signed case be traced back to its audience.
         utmSource: utm.utmSource,

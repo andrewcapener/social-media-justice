@@ -63,6 +63,13 @@ export interface LeadAttribution {
   /** Ad set name, from utm_term. The field that answers "which audience". */
   adSet?: string
   landingPath?: string
+  /**
+   * Where this person came from the first time we saw them, which may be a
+   * different channel entirely from the one that converted them. Without it a
+   * case Growth Channel sourced and Meta retargeting closed is credited wholly
+   * to Meta, and counted a second time by Growth Channel's own pixel.
+   */
+  firstTouch?: Record<string, unknown>
 }
 
 export interface ParkedLead {

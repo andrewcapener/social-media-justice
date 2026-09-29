@@ -32,6 +32,7 @@ interface CapiBody {
   utmCampaign?: string
   utmContent?: string
   utmTerm?: string
+  firstTouch?: Record<string, unknown>
 }
 
 /** Meta requires lowercase, trimmed, SHA-256 hex. */
@@ -147,6 +148,7 @@ export async function POST(request: NextRequest) {
         utmCampaign: body.utmCampaign,
         utmContent: body.utmContent,
         adSet: body.utmTerm,
+        firstTouch: body.firstTouch,
         landingPath: (() => {
           try {
             return body.eventSourceUrl ? new URL(body.eventSourceUrl).pathname : undefined

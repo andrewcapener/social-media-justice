@@ -16,6 +16,7 @@
 import Image from 'next/image'
 import {
   FIRM_NAME,
+  FIRM_NAME_END,
   FIRM_ADDRESS_LINES,
   FIRM_PHONE,
   FIRM_LICENSURE,
@@ -82,7 +83,7 @@ export function Footer() {
             the advertising is FOR, then saying the site itself is not the firm,
             keeps the same disclaimer without the contradiction.
           */}
-          This is attorney advertising for {FIRM_NAME}. This website is not
+          This is attorney advertising for {FIRM_NAME_END} This website is not
           itself a law firm and does not provide legal advice. Submitting
           information through this site does not create an attorney-client
           relationship. Recovery is not guaranteed, and results may vary
@@ -90,14 +91,13 @@ export function Footer() {
           similar outcome.
         </p>
 
-        <p>
-          {/*
-            Quoted from the firm's own disclaimers page. They are admitted in
-            two states and this campaign runs nationally, so the association
-            language has to travel with the claim rather than be implied by it.
-          */}
-          {FIRM_LICENSURE}
-        </p>
+        {/*
+          Quoted from the firm's own published material, never paraphrased. A
+          firm admitted in a few states, on a campaign that runs nationally,
+          needs the association language to travel with the claim. A firm that
+          has not given us one gets no line rather than a guess.
+        */}
+        {FIRM_LICENSURE && <p>{FIRM_LICENSURE}</p>}
 
         <p>
           By submitting the form on this page, you agree to be contacted by{' '}

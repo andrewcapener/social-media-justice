@@ -46,7 +46,7 @@ const CONFIG = {
   pixelId: '1546867846754027',
 }
 
-const SITE = 'https://www.socialmediajusticetoday.com'
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.socialmediajusticetoday.com'
 const UTM =
   'utm_source=facebook&utm_medium=paid_social' +
   '&utm_campaign={{campaign.name}}&utm_content={{ad.name}}' +

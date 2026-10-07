@@ -37,7 +37,8 @@ const GRAPH_VERSION = 'v21.0'
  */
 function safeDestination(next: string | null): string {
   const fallback =
-    process.env.RETAINER_REDIRECT_URL ?? 'https://www.socialmediajusticetoday.com/thank-you'
+    process.env.RETAINER_REDIRECT_URL ??
+    `${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.socialmediajusticetoday.com'}/thank-you`
   if (!next) return fallback
 
   let url: URL

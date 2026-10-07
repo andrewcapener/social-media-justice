@@ -117,6 +117,22 @@ remove it before launch.
 
 ---
 
+## More than one firm
+
+The same code runs more than one site. Each is its own Vercel project on this
+repo, and `NEXT_PUBLIC_FIRM` picks the firm profile in `lib/legal.ts`:
+
+| Domain | `NEXT_PUBLIC_FIRM` | Firm |
+|---|---|---|
+| socialmediajusticetoday.com | unset or `johnson` | Johnson Firm LLP |
+| socialmediajusticetomorrow.com | `weitz` | Weitz & Luxenberg P.C., LA office |
+
+An unknown value fails the build rather than falling back, so a typo can't
+put one firm's name on the other's domain. Each project also sets its own
+`NEXT_PUBLIC_SITE_URL`, Typeform id, pixel and CAPI credentials.
+
+---
+
 ## Compliance
 
 The footer is compliance surface, not decoration: attorney advertising notice,

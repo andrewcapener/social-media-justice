@@ -1,7 +1,7 @@
 import { FirmMark } from '@/components/ui/FirmMark'
 import { Footer } from '@/components/Footer'
 import type { LegalBlock } from '@/lib/legalContent'
-import { FIRM_NAME, FIRM_POLICY_URL, PRIVACY_EMAIL } from '@/lib/legal'
+import { FIRM_NAME, FIRM_NAME_END, FIRM_POLICY_URL, PRIVACY_EMAIL } from '@/lib/legal'
 
 /**
  * Shared shell for the legal pages.
@@ -52,8 +52,9 @@ export function LegalPage({
  */
 function substitute(text: string): string {
   return text
+    .replaceAll('{FIRM}.', FIRM_NAME_END)
     .replaceAll('{FIRM}', FIRM_NAME)
-    .replaceAll('{POLICY}', FIRM_POLICY_URL)
+    .replaceAll('{POLICY}', FIRM_POLICY_URL ?? '')
     .replaceAll('{PRIVACY_EMAIL}', PRIVACY_EMAIL)
 }
 

@@ -1,3 +1,9 @@
+import {
+  FIRM_POLICY_URL,
+  FIRM_PRACTICE_NOTICE,
+  FIRM_STATE_NOTICE,
+} from '@/lib/legal'
+
 /**
  * The legal copy for this landing page.
  *
@@ -17,7 +23,7 @@
  * substituted at render time by components/LegalPage.tsx:
  *
  *   {FIRM}           the firm's name
- *   {POLICY}         the firm's published policy URL
+ *   {POLICY}         the firm's published policy URL, where it has one
  *   {PRIVACY_EMAIL}  our data-rights contact
  *
  * ⚠️ Not drafted by a lawyer. It is accurate about what this page does, which
@@ -25,6 +31,19 @@
  */
 
 export type LegalBlock = readonly [kind: 'h' | 'p' | 'li', text: string]
+
+/**
+ * The closing pointer to the firm's own published policy, on both documents.
+ *
+ * Only for a firm that has one. A firm without a policy URL gets no pointer
+ * rather than a link to its homepage dressed up as a policy.
+ */
+const FIRM_POLICY_POINTER: readonly LegalBlock[] = FIRM_POLICY_URL
+  ? [
+      ['h', "The Firm's Own Policy"],
+      ['p', "For the firm's published website policy, visit {POLICY}."],
+    ]
+  : []
 
 export const FIRM_DISCLAIMER: readonly LegalBlock[] = [
   ['h', 'Attorney Advertising'],
@@ -42,13 +61,14 @@ export const FIRM_DISCLAIMER: readonly LegalBlock[] = [
   ['p', 'Nothing on this site is a promise or prediction about any case. Recovery is not guaranteed. Results depend on the specific facts, and prior results do not guarantee a similar outcome. Any figures referenced in advertising relate to other matters and are not a representation about yours.'],
 
   ['h', 'Where the Firm Practises'],
-  ['p', 'This advertising is seen across the United States. The participating firm is not licensed in every state. The licensure statement in the footer of this page sets out where its lawyers are admitted and how matters outside those states are handled.'],
+  ['p', FIRM_PRACTICE_NOTICE],
 
   ['h', 'No Certification of Specialty'],
   ['p', 'No attorney at the firm is certified as a specialist in any field by any state commission on continuing legal education and specialization, except where a particular attorney is separately identified as holding such a certification. Certification is not available in every state and the absence of it does not indicate a lack of experience.'],
 
-  ['h', 'State-Specific Notices'],
-  ['p', 'Several states require their own wording in attorney advertising, and the firm publishes those notices, including for Alabama, Arizona, Colorado, Florida, Iowa, Kentucky, Mississippi, Missouri, Nevada, New Jersey, New Mexico, New York, Oregon, Tennessee, Texas and Wyoming. If you are in one of those states, the notice that applies to you is published at {POLICY} and forms part of this advertising.'],
+  ...(FIRM_STATE_NOTICE
+    ? ([['h', 'State-Specific Notices'], ['p', FIRM_STATE_NOTICE]] as const)
+    : []),
 
   ['h', 'Not Medical Advice'],
   ['p', 'Health information on this site is general and educational. It is not medical advice, it is not a diagnosis, and it is not a substitute for care from a qualified professional. If you or someone you know is in crisis, call or text 988 in the United States.'],
@@ -59,13 +79,12 @@ export const FIRM_DISCLAIMER: readonly LegalBlock[] = [
   ['h', 'Accuracy'],
   ['p', 'Information here is provided as is and is not guaranteed to be correct, complete or current. Litigation changes, and a page that was accurate when written may not be when read.'],
 
-  ['h', "The Firm's Own Policy"],
-  ['p', "For the firm's published website policy, visit {POLICY}."],
+  ...FIRM_POLICY_POINTER,
 ]
 
 export const FIRM_PRIVACY_POLICY: readonly LegalBlock[] = [
   ['h', 'What This Page Is'],
-  ['p', 'This is an advertising landing page for {FIRM}. It is operated by an advertising company, not by the firm. This policy covers what happens on this page. The firm has its own policy covering its own website, linked at the bottom.'],
+  ['p', 'This is an advertising landing page for {FIRM}. It is operated by an advertising company, not by the firm. This policy covers what happens on this page.' + (FIRM_POLICY_URL ? ' The firm has its own policy covering its own website, linked at the bottom.' : '')],
 
   ['h', 'The Intake Form Is Not Ours'],
   ['p', 'The questionnaire on this page is hosted and operated by the participating firm through a third-party provider and embedded here. When you complete it, your answers go to that firm. Your name, phone number, email address and the details of your situation are submitted directly to their systems and are governed by their policy, not this one.'],
@@ -113,6 +132,5 @@ export const FIRM_PRIVACY_POLICY: readonly LegalBlock[] = [
   ['h', 'Changes'],
   ['p', 'We may update this policy. Changes take effect when posted, and the effective date above will change.'],
 
-  ['h', "The Firm's Own Policy"],
-  ['p', "For the firm's published website policy, visit {POLICY}."],
+  ...FIRM_POLICY_POINTER,
 ]
